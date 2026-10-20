@@ -6,7 +6,7 @@
 <meta name="description" content="Gabo Moraes, creative art director based in São Paulo. Click to deal.">
 <title>Gabo Portfolio Deck</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Inter+Tight:wght@300;400&family=Inter:wght@400&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap">
 <style>
 /* Layout: one-screen card table seen from above. Deck centered, the hand fans out along the bottom edge toward the viewer. */
 :root {
@@ -183,84 +183,79 @@ body {
 .gather.on { opacity: 1; pointer-events: auto; }
 .gather:hover, .gather:focus-visible { color: var(--card); border-color: var(--brass); outline: none; }
 
-/* Job sheet */
-.sheet {
-  position: fixed; inset: 0; z-index: 100;
-  display: grid; place-items: center;
-  background: rgba(4,18,17,.72);
-  backdrop-filter: blur(6px);
-  padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
-  opacity: 0; transition: opacity .35s;
-}
-.sheet.open { opacity: 1; }
-.job {
-  width: min(880px, 100%); max-height: 100%;
-  overflow: auto;
-  background: var(--card); color: var(--ink);
-  border-radius: 16px;
-  box-shadow: 0 30px 80px rgba(0,0,0,.5);
-  transform: translateY(24px) scale(.97); transition: transform .45s cubic-bezier(.2,.8,.2,1);
-}
-.sheet.open .job { transform: none; }
-.job-head {
-  display: grid; grid-template-columns: auto 1fr auto; gap: 20px; align-items: start;
-  padding: 28px 28px 20px;
-  border-bottom: 1px solid rgba(23,32,31,.12);
-}
-.job-rank { font-family: var(--display); font-size: 54px; line-height: .85; }
-.job-rank span { display: block; font-size: 34px; }
-.job-head h2 { margin: 2px 0 6px; font-family: var(--display); font-weight: 400; font-size: clamp(28px, 4vw, 42px); line-height: 1.02; text-wrap: balance; }
-.job-meta { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #5d6b69; display: flex; flex-wrap: wrap; gap: 6px 18px; }
-.close {
-  font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
-  background: var(--ink); color: var(--card); border: 0; border-radius: 999px; padding: 9px 14px; cursor: pointer;
-}
-.close:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
-.job-body { display: grid; grid-template-columns: 1.3fr 1fr; gap: 28px; padding: 24px 28px 32px; }
-.job-body > * { min-width: 0; }
-.job-body p { margin: 0 0 14px; font-size: 16px; line-height: 1.55; max-width: 60ch; }
-.job-body dl { margin: 18px 0 0; display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; font-size: 14px; }
-.job-body dt { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #5d6b69; padding-top: 2px; }
-.job-body dd { margin: 0; }
 .pip .thumb { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 4px; display: block; margin-bottom: 4px; }
 .card.has-thumb .pip .suit, .card.has-thumb .corner.bottom { display: none; }
-.links { display: flex; flex-wrap: wrap; gap: 4px 22px; }
-.media { display: grid; gap: 10px; align-self: start; min-width: 0; }
-.film { position: relative; aspect-ratio: 16 / 9; max-width: 100%; border-radius: 10px; overflow: hidden; background: var(--ink); }
-.film iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-.pics { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.pics img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 8px; display: block; background: #e7e5df; }
-.pics img.wide { grid-column: span 2; aspect-ratio: 16 / 9; }
-.job.with-media .job-body { grid-template-columns: 1fr 1.25fr; }
-.job-body .lead { font-size: 19px; line-height: 1.45; font-weight: 600; }
-.job-body dd { line-height: 1.45; }
-.full { display: inline-block; margin-top: 20px; font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); border-bottom: 1.5px solid var(--back); padding-bottom: 3px; text-decoration: none; }
-.full:hover, .full:focus-visible { color: var(--back); outline: none; }
-.poster {
-  position: relative; align-self: start;
-  aspect-ratio: 4/5; max-width: 100%;
-  border-radius: 12px; overflow: hidden;
-  background: linear-gradient(150deg, var(--a) 0%, var(--a) 55%, var(--b) 100%);
-  color: var(--d);
-  display: flex; flex-direction: column; justify-content: flex-end; gap: 10px;
-  padding: 24px; box-sizing: border-box;
-}
-.poster-suit { position: absolute; top: 14px; right: 20px; font-size: 120px; line-height: 1; opacity: .22; color: var(--b); }
-.poster strong { font-family: var(--display); font-weight: 400; font-size: clamp(34px, 5vw, 56px); line-height: .95; text-wrap: balance; }
-.poster-meta { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; opacity: .85; }
-.shots { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.shot { border-radius: 8px; aspect-ratio: 4/3; max-width: 100%; display: grid; place-items: end start; padding: 10px; box-sizing: border-box; font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.85); }
-.shot.wide { grid-column: span 2; aspect-ratio: 16/9; }
-.placeholder-note { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: #8a9593; margin-top: 10px; }
 
-@media (max-width: 640px) {
-  .job-head { grid-template-columns: auto 1fr; padding: 22px 20px 16px; }
-  .job-head .close { grid-column: 1 / -1; justify-self: start; grid-row: 1; }
-  .job-body, .job.with-media .job-body { grid-template-columns: 1fr; padding: 20px; }
-  .brand p { display: none; }
+/* Job page: mirrors the layout of gabomoraes.work/work/* (black page, Inter Tight, full-bleed film, meta row, gallery rows, about block). */
+.page {
+  --pg-bg: #000; --pg-fg: #faf5f5; --pg-dim: #8f8f8f; --pg-faint: #666; --pg-hot: #ffff00;
+  --pg-font: "Inter Tight", "Inter", system-ui, sans-serif;
+  --pg-gut: clamp(16px, 1.75vw, 30px);
+  --pg-radius: clamp(12px, 1.75vw, 30px);
+  position: fixed; inset: 0; z-index: 100;
+  overflow-y: auto; overscroll-behavior: contain;
+  background: var(--pg-bg); color: var(--pg-fg);
+  font-family: var(--pg-font); font-weight: 400;
+  opacity: 0; transform: translateY(28px);
+  transition: opacity .4s, transform .5s cubic-bezier(.2,.8,.2,1);
+  user-select: text;
 }
+.page.open { opacity: 1; transform: none; }
+.pg-inner { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+.pg-pad { padding-left: max(var(--pg-gut), env(safe-area-inset-left, 0px)); padding-right: max(var(--pg-gut), env(safe-area-inset-right, 0px)); }
+.page button.link { background: none; border: 0; padding: 0; font: inherit; color: inherit; cursor: pointer; text-transform: inherit; }
+.page a { color: inherit; text-decoration: none; }
+.page :focus-visible { outline: 2px solid var(--pg-hot); outline-offset: 3px; }
+.crumbs { display: flex; align-items: center; gap: 14px; padding-block: 18px; font-size: clamp(15px, 1.2vw, 20px); color: var(--pg-dim); text-transform: uppercase; flex-wrap: wrap; }
+.crumbs .arrow { opacity: .8; }
+.page .crumbs .hot { color: var(--pg-hot); }
+.crumbs .here { color: var(--pg-fg); }
+.crumbs .rank { margin-left: auto; font-family: var(--display); font-size: 1.3em; color: var(--pg-fg); text-transform: none; }
+.crumbs .rank.red { color: #ff4d5e; }
+.crumbs button.link:hover { color: var(--pg-fg); }
+.pg-head { display: grid; grid-template-columns: 1fr 1fr; gap: 24px var(--pg-gut); padding-block: clamp(32px, 5vw, 80px) clamp(28px, 4vw, 64px); align-items: start; }
+.pg-head > * { min-width: 0; }
+.pg-head h1 { margin: 0; font-family: var(--pg-font); font-weight: 400; font-size: clamp(40px, 4.4vw, 75px); line-height: .92; letter-spacing: -.01em; text-transform: uppercase; text-wrap: balance; }
+.pg-sub { display: flex; gap: clamp(24px, 6vw, 96px); margin-top: 10px; font-family: "Inter", var(--pg-font); font-size: 14px; color: var(--pg-faint); text-transform: uppercase; }
+.pg-label { margin: 0 0 14px; font-family: "Inter", var(--pg-font); font-size: 14px; color: var(--pg-faint); text-transform: uppercase; }
+.pg-head p.over, .pg-about p { margin: 0; font-size: clamp(17px, 1.2vw, 20px); line-height: 1.2; max-width: 34em; }
+.pg-row { display: flex; gap: var(--pg-gut); margin: 0 auto var(--pg-gut); }
+.pg-row.full { margin-bottom: clamp(28px, 2.6vw, 45px); }
+.pg-row:not(.full) { padding-left: max(var(--pg-gut), env(safe-area-inset-left, 0px)); padding-right: max(var(--pg-gut), env(safe-area-inset-right, 0px)); box-sizing: border-box; }
+.pg-item { position: relative; min-width: 0; border-radius: var(--pg-radius); overflow: hidden; background: #111; }
+.pg-row.full .pg-item { border-radius: 0; }
+.pg-item img, .pg-item iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; object-fit: cover; display: block; }
+.pg-item.ph { background: linear-gradient(135deg, var(--a), var(--b)); display: grid; place-items: center; }
+.pg-item.ph span, .pg-item.ph a { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.85); }
+.pg-item.ph a { border: 1px solid rgba(255,255,255,.6); border-radius: 999px; padding: 10px 18px; background: rgba(0,0,0,.35); }
+.pg-meta { display: grid; grid-template-columns: minmax(0, 1fr) repeat(2, minmax(0, 1fr)) minmax(0, 2fr) minmax(0, 1fr); gap: 16px var(--pg-gut); padding-block: 10px clamp(48px, 6vw, 110px); text-transform: uppercase; font-size: clamp(16px, 1.2vw, 20px); }
+.pg-meta .arrow { justify-self: end; color: var(--pg-dim); }
+.pg-meta h3 { margin: 0 0 10px; font-weight: 400; font-size: inherit; color: var(--pg-dim); }
+.pg-meta p { margin: 0 0 16px; line-height: 1.2; }
+.pg-meta .team p { text-transform: none; }
+.pg-about { display: grid; grid-template-columns: 1fr 1fr; gap: 20px var(--pg-gut); padding-block: clamp(36px, 4vw, 70px) clamp(48px, 5vw, 90px); }
+.pg-about h2 { margin: 0; font-weight: 400; font-size: clamp(32px, 2.9vw, 50px); line-height: 1; }
+.pg-about .award { margin-top: 18px; font-size: 14px; color: var(--pg-dim); text-transform: uppercase; }
+.pg-foot { display: grid; grid-template-columns: 1fr 1fr; padding-block: clamp(60px, 7vw, 120px) 40px; font-size: clamp(16px, 1.2vw, 20px); text-transform: uppercase; }
+.pg-foot button { color: var(--pg-hot) !important; text-align: left; }
+.pg-foot .next { justify-self: start; text-align: left; }
+.pg-foot small { display: block; margin-top: 6px; color: var(--pg-dim); font-size: 14px; }
+.pg-social { display: flex; flex-wrap: wrap; gap: 12px 40px; align-items: baseline; padding-block: 30px 40px; border-top: 1px solid #222; font-size: clamp(15px, 1.2vw, 20px); }
+.pg-social a:hover { color: var(--pg-hot); }
+.pg-social .who { margin-right: auto; text-transform: uppercase; color: var(--pg-dim); }
+
+@media (max-width: 800px) {
+  .pg-head, .pg-about { grid-template-columns: 1fr; }
+  .pg-meta { grid-template-columns: 1fr 1fr; }
+  .pg-meta .arrow, .pg-meta .sp { display: none; }
+  .pg-meta .team { grid-column: 1 / -1; }
+  .pg-row { gap: 10px; margin-bottom: 10px; }
+  .pg-row:not(.full).stack { flex-direction: column; }
+  .pg-row:not(.full).stack .pg-item { flex: none !important; width: 100%; }
+}
+@media (max-width: 640px) { .brand p { display: none; } }
 @media (prefers-reduced-motion: reduce) {
-  .card, .inner, .job, .sheet { transition-duration: .01s !important; }
+  .card, .inner, .page { transition-duration: .01s !important; }
   .deal-label { animation: none; }
 }
 </style>
@@ -280,307 +275,27 @@ body {
   <button class="gather" id="gather">Gather cards</button>
 </main>
 
-<div class="sheet" id="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="job-title">
-  <article class="job" id="job"></article>
-</div>
+<div class="page" id="page" hidden role="dialog" aria-modal="true" aria-labelledby="job-title"></div>
 
 <script>
 // Jobs exported from gabomoraes.work (2026-10-20). Images live on Framer's CDN, films on Vimeo.
-const JOBS = [
- {
-  "slug": "mequiverse",
-  "rank": "A",
-  "suit": "♥",
-  "title": "Méquiverse",
-  "client": "McDonald's",
-  "agency": "Galeria.ag",
-  "year": "2023",
-  "role": "Creative concept, Design, Art direction",
-  "overview": "recent NASA studies confirm: the CBO comeback is one of the hottest topics in the multiverse right now. that's why, when we released its successor, people came from all realities for a piece of it.",
-  "about": "the CBO is one of Brazil's favourite McDonald's sandwiches, even sparking a giant online campaign for its return once it went away. we had the opportunity to bring it back with some changes to the original recipe, so we called it an alternate universe's CBO and made a campaign telling the story of how it got here, starting with a TV ad and eventually following up with a full-on comic book run.",
-  "team": "Gabo Moraes, Luan Alves, Guzera, Rodrigo Porto, Paladino+Santa Transmedia and Thobias Daneluz",
-  "colors": [
-   "#2a1b6b",
-   "#da291c",
-   "#ffc72c"
-  ],
-  "images": [
-   "FEKkyQ2mcqwkAuUWoMeUhD5aQ4.gif",
-   "ncpj89fnbrXHzuMRvSKggRmxDJE.gif",
-   "rDa5erQcK4Z4nXXBOQzEhjvqKFI.gif",
-   "PbWXIYt9Ss9qegzcvEgmKgPser8.png",
-   "s1ZKtAbZo6fyiLz5KOCD9h8s.jpg",
-   "APITv7B43lrSrGQqhtfsAdXAkiE.jpg"
-  ],
-  "vimeo": [
-   "802156788"
-  ]
- },
- {
-  "slug": "woofridge",
-  "rank": "K",
-  "suit": "♣",
-  "title": "Beer Buddies",
-  "client": "Consul",
-  "agency": "DM9/DDB",
-  "year": "2025",
-  "role": "Design, Art direction",
-  "overview": "in Brazil, older dogs are 5x times less likely to be adopted than puppies. so, we decided to teach them a new trick to help them out - and sell some beer fridges in the process.",
-  "about": "Consul partnered with pet trainer Alexandre Rossi (Dr. Pet) and nonprofit shelters to train senior shelter dogs to fetch beers on command from the Consul Beer Fridge. To drive adoption, a 30% discount on the fridge was offered to anyone adopting an older dog through partner shelters.",
-  "team": "Gabo Moraes, Matheus Loretti, Leonardo Rodriguez, Débora Caprioli, Pedro Rosadas e PaPoCo",
-  "colors": [
-   "#0b2e59",
-   "#d9a441",
-   "#f2efe8"
-  ],
-  "images": [
-   "ohmyd2kbhT0zkEMez0bt5vvoBc.gif",
-   "gFdPJrKE2E0IpKxQ6Vexa6P2nhg.gif",
-   "AUrjYPM8Ba5WOr3DiJZlBtLTyk.jpg",
-   "fX5YfpWwtJKSldtsVGMWqoRnxJs.jpg",
-   "e9vkSiI9t4ltPgtXs13Lhf979jM.gif",
-   "pFSztLn5Zipc6Y0VvtTUg4Ivok.gif"
-  ],
-  "vimeo": [
-   "1089894151"
-  ]
- },
- {
-  "slug": "pssica",
-  "rank": "Q",
-  "suit": "♠",
-  "title": "Pssica Boats",
-  "client": "Netflix",
-  "agency": "Euphoria",
-  "year": "2024",
-  "role": "Creative concept, Art direction",
-  "overview": "pssica is a brazillian TV show directed by the legendary Fernando Meirelles and his son, Quico. the show is set in Pará, northern brazil, and shows the dark reality of human trafficking and crime that happens along the rivers and deep into the jungle.",
-  "about": "in northern Brazil, it's common for boats to have female names, often displayed with beautiful typography and bright colors. unfortunately, many of these boats also are used to transport women trapped in human trafficking and prostitution along the rivers in Pará. we tapped into this sad coincidence to promote the show and also spark some conversation online.",
-  "team": "Gabo Moraes, Pedro Arvati, Pedro Ramos, Ket Sales, Ricardo Alonso, Marcelo Rizério and YUCA",
-  "colors": [
-   "#0d0d0d",
-   "#e50914",
-   "#1f6f6a"
-  ],
-  "images": [
-   "JT384eLkVmZy5deGF9J3oal3hI.gif",
-   "mcb4E6gC7YCcdvCxj2pTiVKq6M.gif",
-   "MOXXtTRW5hpzOKSFSU6WXlo14.gif",
-   "Y9MYbX72YmooiPkbyW2rl0CJZo.gif",
-   "eM9dEkXPXrkQW13w6yAJWW6vhI.gif",
-   "3AVrhUABmNZDauCmSkNQepqnJw.gif"
-  ],
-  "vimeo": [
-   "1112909570"
-  ]
- },
- {
-  "slug": "mclolla",
-  "rank": "J",
-  "suit": "♦",
-  "title": "Lolla '24",
-  "client": "McDonald's",
-  "agency": "Galeria.ag",
-  "year": "2024",
-  "role": "Creative concept, Design, Art direction",
-  "overview": "mcdonald's became the unofficial go-to meal of lollapalooza brasil. a nice, cheap way to replenish your energies between shows, and an almost mandatory stop in your festival line-up.",
-  "about": "in partnership with illustrator Jun Ioneda, we created a vibrant and surreal visual identity to represent our brand inside Lollapalooza Brasil 2024. (also, i got to interview one of the greatest artists in Brazil, no biggie.)",
-  "team": "Gabo Moraes, Gabriel Braz, Lais Delcelo, Chico Medeiros, Giulio Beloto, Cris Prado, Rodrigo Marangoni and Jun Ioneda",
-  "award": "Bronze, Illustration · Brazilian Creative Club 2024",
-  "colors": [
-   "#ff4fa3",
-   "#ffc72c",
-   "#3b2bd6"
-  ],
-  "images": [
-   "GVmG5ktu9eK6atOvTeBDB2yFv9s.png",
-   "dgoQtqGxuSvKYf7uzf17tkjQY8c.gif",
-   "2uxLpJZB9cmwLwVxSA33PHsiybM.gif",
-   "655jebIpqAeEeY4ijxpaEETYxyE.gif",
-   "6YXOZ6yBhGApMBFV5qNxFzNuo.gif",
-   "xKLwWaWpKDmp5wlwDFDmjfVM7E.png"
-  ],
-  "vimeo": []
- },
- {
-  "slug": "nonsense",
-  "rank": "10",
-  "suit": "♥",
-  "title": "Defying Logic",
-  "client": "McDonald's",
-  "agency": "Galeria.ag",
-  "year": "2023",
-  "role": "Creative concept, Design, Art direction",
-  "overview": "it's not always that getting one of those mind-bending briefs turns into a good thing, but this time it did. we got some of the greatest thinkers in history to try and figure out what is going on in this sandwich: spicy? sweet? crispy? in the end, it makes perfect sense.",
-  "about": "the McCrispy Chicken Elite was kind of a confusing sandwich. it was sweet, kinda spicy and crunchy. and we couldn't 100% say it was any of those. so, we created this story where scientists, philosophers and artists would try to figure it out. the veredict? it's delicious.",
-  "team": "Gabo Moraes, Luan Alves, Carlos Galazzi, Guzera Alves, Rodrigo Porto, Paladino+CZAR and Punch Audio",
-  "award": "In-Book, Film/Art Direction · Brazilian Creative Club 2024",
-  "colors": [
-   "#3a2a1a",
-   "#c9a24a",
-   "#da291c"
-  ],
-  "images": [
-   "DVn26RJCqlMOLxRbjNMEzIZnp8.gif",
-   "PA5L1Col1rmYNN182EYGzfxEGk.webp",
-   "13i9Sz1A0YM9G656bxFfwGho.webp",
-   "CHk6JI3rJ14rRZxgqrWC6MoM7c.webp",
-   "DkyAqnh7uglD76tNSgbxDjVMyj8.webp",
-   "zjXwR4ncujNpaCiJrTyfM5n1DT8.webp"
-  ],
-  "vimeo": [
-   "875727093"
-  ]
- },
- {
-  "slug": "mcmeltetel",
-  "rank": "9",
-  "suit": "♦",
-  "title": "The Rockstar Meal",
-  "client": "McDonald's",
-  "agency": "Galeria.ag",
-  "year": "2023",
-  "role": "Creative concept, Design, Art direction",
-  "overview": "for the first edition of The Town, a music festival that's set to be one of the biggest in Brazil, we created a sandwich so good that it should be a star: McMelt The Town.",
-  "about": "we created some cool merch for our new rockstar and even did a collab with Marrone (or should i say Post Marrone?) - a true brazillian star - and the crowd went wild!",
-  "team": "Gabo Moraes, Luan Alves, Gabriel Braz, Laís Delcelo, Guzera Alves, Rodrigo Porto and recôncavo",
-  "colors": [
-   "#111111",
-   "#da291c",
-   "#ffc72c"
-  ],
-  "images": [
-   "Zs64ltjSsXoOJQMvCrGOMS54nc.webp",
-   "AePb9E7yG8Stdh3pA37eHiL550Y.webp",
-   "OWBJKnFCtPLcZAlCVP7NNfxZOnE.webp",
-   "fCr6Plx3HHzHWtJ5EZOl6xAyH4.jpg",
-   "ogjO3HJF3MXrzB338TsnLbkMu0.jpg",
-   "0S96tY7h1GIapqpwgSrmLxJLTlA.jpg"
-  ],
-  "vimeo": [
-   "856519851",
-   "969178703"
-  ]
- },
- {
-  "slug": "dancagatinhodanca",
-  "rank": "8",
-  "suit": "♥",
-  "title": "Dial \"M\" for Love",
-  "client": "McDonald's",
-  "agency": "Galeria.ag",
-  "year": "2022",
-  "role": "Creative concept, Art direction",
-  "overview": "they say romance is dead. In brazilian Valentine's Day, we went looking for it way back in the 2000's, and didn't hold back: cheesy pick-up lines, outdated looks, \"Dial LOVE to 48022\", hunky TV hosts and, of course, lots of Méqui.",
-  "about": "we invited people to send their best pick-up lines and turned them into content for our WhatsApp channel in collaboration with Rodrigo Faro, one of Brazil's most romantic TV hosts. all while reliving the good old days of SMS dating advice.",
-  "team": "Gabo Moraes, Luan Alves, Matheus Franzoni, Guzera Alves and Rodrigo Porto",
-  "colors": [
-   "#ff6fb5",
-   "#da291c",
-   "#7ad7ff"
-  ],
-  "images": [
-   "F5foiUMoe1lwaE2xYhFTyDUZFU.webp",
-   "mRQizwPmtO0wPvZseFOcsZLSiI.webp",
-   "HmMAzRz0eM9Vf2n1vN59t88BY.webp",
-   "qR3GysjMefZeDeTry1kyGy1MHI.webp",
-   "ISyusT3mpFJQHaK7JiEtPu5c6c.webp",
-   "w0VV7NhLexVU1os2Sgz8Cfbdw.webp"
-  ],
-  "vimeo": [
-   "724544164"
-  ]
- },
- {
-  "slug": "inimigosdodetran",
-  "rank": "7",
-  "suit": "♦",
-  "title": "Drive-Thru Signs",
-  "client": "McDonald's",
-  "agency": "Galeria.ag",
-  "year": "2022",
-  "role": "Creative concept, Design, Art direction",
-  "overview": "strange things happen during Drive-Thru Week. everywhere you look, you see Méqui. all you can do is get in your car, go to the nearest Drive-Thru and hope you don't miss any deals.",
-  "about": "",
-  "team": "Gabo Moraes, Luan Alves, Guzera, Rodrigo Porto e Paladino+Santa Transmedia",
-  "colors": [
-   "#1d5c2e",
-   "#ffc72c",
-   "#f2f2f2"
-  ],
-  "images": [
-   "kaei0JczbsjqIH21sZIi2fR2mNg.gif",
-   "HccN5YHpHDW2duYsgnv732SNNY.gif",
-   "smahaTRfHSQvlf0CfD3aLxsSmI.gif"
-  ],
-  "vimeo": [
-   "1089919500"
-  ]
- },
- {
-  "slug": "powerup",
-  "rank": "6",
-  "suit": "♥",
-  "title": "Power-Ups",
-  "client": "McDonald's",
-  "agency": "Galeria.ag",
-  "year": "2021",
-  "role": "Creative concept, Design, Art direction",
-  "overview": "every gamer needs their power-ups. McDonald's wanted to show the world that, whenever you need some boost in your game, they'll be there.",
-  "about": "in 2021, we brought McDonald's closer to the gaming community with the \"Méqui, your Player 2\" campaign, which was released along with an ad loaded with references and easter eggs that showed the best power-up for your gaming session is a McDonald's meal.",
-  "team": "Gabo Moraes, Luan Alves, Guzera e Rodrigo Porto",
-  "colors": [
-   "#1a1446",
-   "#00e0ff",
-   "#ffc72c"
-  ],
-  "images": [
-   "Gu9TXMtIUxZLilxYitaTCAEhJH4.gif",
-   "ggT8y1EYa6qXnX2VgUV9O2gaPM.gif",
-   "hkHE8thpRm1AIRRLWJDHw4sqm6A.gif",
-   "PPZSHo906ojHxzovitCmzyD9NGE.gif",
-   "LHaatsc2h0mdqJggDaIg0Oij8U.gif"
-  ],
-  "vimeo": [
-   "1089917685"
-  ]
- },
- {
-  "slug": "nerdstuff",
-  "rank": "5",
-  "suit": "♠",
-  "title": "MTG Proxies",
-  "client": "Personal project",
-  "agency": "",
-  "year": "",
-  "role": "Card redesign",
-  "overview": "I've recently gotten into this game called Magic: The Gathering. For all you non-nerds out there, it's a trading card game, where you build your deck and spend a few hours arguing about rules with your friends.",
-  "about": "The thing about MTG that got me, though, was the art. The illustrations on the cards are amazing and there are a LOT of special editions with even cooler designs. So when i found out that people also ocasionally redesign some of their own cards, i had to try it myself. Using Midjourney and some other stuff, i recreated some cards to make them more my own.",
-  "team": "Gabo Moraes",
-  "colors": [
-   "#2b2233",
-   "#8f6bd8",
-   "#d9c48a"
-  ],
-  "images": [
-   "Oidz85Yzc8pDCzPNvIkIhNBWaA.png",
-   "f3PcWApJkIZHYQisEK10rmK2dPA.jpg",
-   "FO3Dt6IcT8ZI71Viam7KV8vAMWg.jpg",
-   "11hrSzEIfrRZ3Sz4qNAZVnB9wY.jpg",
-   "GMGi3SkNY7HiKZtm3qI2R6BB4Nw.jpg",
-   "wQeBCG3uyXaYjT7N6HrkxdcwJ4.jpg"
-  ],
-  "vimeo": []
- }
-];
+const JOBS = [{"slug":"mequiverse","rank":"A","suit":"♥","title":"Méquiverse","client":"McDonald's","agency":"Galeria.ag","year":"2023","role":"Creative concept, Design, Art direction","overview":"recent NASA studies confirm: the CBO comeback is one of the hottest topics in the multiverse right now. that's why, when we released its successor, people came from all realities for a piece of it.","about":"the CBO is one of Brazil's favourite McDonald's sandwiches, even sparking a giant online campaign for its return once it went away. we had the opportunity to bring it back with some changes to the original recipe, so we called it an alternate universe's CBO and made a campaign telling the story of how it got here, starting with a TV ad and eventually following up with a full-on comic book run.","team":"Gabo Moraes, Luan Alves, Guzera, Rodrigo Porto, Paladino+Santa Transmedia and Thobias Daneluz","colors":["#2a1b6b","#da291c","#ffc72c"],"blocks":[{"full":true,"items":[{"k":"V","v":"802156788","ar":1.78,"w":1.0}]},"meta",{"full":false,"items":[{"k":"I","v":"FEKkyQ2mcqwkAuUWoMeUhD5aQ4.gif","ar":1.78,"w":1.0}]},{"full":false,"items":[{"k":"I","v":"ncpj89fnbrXHzuMRvSKggRmxDJE.gif","ar":1.78,"w":0.491},{"k":"I","v":"rDa5erQcK4Z4nXXBOQzEhjvqKFI.gif","ar":1.78,"w":0.491}]},"about",{"full":false,"items":[{"k":"I","v":"PbWXIYt9Ss9qegzcvEgmKgPser8.png","ar":1.78,"w":1.0}]},{"full":false,"items":[{"k":"I","v":"s1ZKtAbZo6fyiLz5KOCD9h8s.jpg","ar":1.39,"w":0.66},{"k":"I","v":"APITv7B43lrSrGQqhtfsAdXAkiE.jpg","ar":0.67,"w":0.322}]},{"full":false,"items":[{"k":"I","v":"ZU1hx9BDJkF72UxQqudACN9XUqc.png","ar":2.5,"w":1.0}]},{"full":false,"items":[{"k":"I","v":"hoZWEy93FDnMXFYpFiqSWuR0suI.png","ar":2.5,"w":1.0}]},{"full":false,"items":[{"k":"I","v":"nbNxgUholBjCoOLVAI375llUfSw.png","ar":2.5,"w":1.0}]},{"full":false,"items":[{"k":"I","v":"M6J90YqRuo8csK5MjoeSCji2zE.png","ar":2.5,"w":1.0}]},{"full":false,"items":[{"k":"I","v":"OKC8fK0EOqiGyK3TBo6AptXxpLU.jpg","ar":0.71,"w":0.322},{"k":"I","v":"RmyVU69E7Oa8IiSQGgsL6PkHRGc.jpg","ar":0.71,"w":0.322},{"k":"I","v":"tbvpaIMroyG9fjStqUydr8YWpI.jpg","ar":0.71,"w":0.322}]}],"cover":"FEKkyQ2mcqwkAuUWoMeUhD5aQ4.gif"},
+{"slug":"woofridge","rank":"K","suit":"♣","title":"Beer Buddies","client":"Consul","agency":"DM9/DDB","year":"2025","role":"Design, Art direction","overview":"in Brazil, older dogs are 5x times less likely to be adopted than puppies. so, we decided to teach them a new trick to help them out - and sell some beer fridges in the process.","about":"Consul partnered with pet trainer Alexandre Rossi (Dr. Pet) and nonprofit shelters to train senior shelter dogs to fetch beers on command from the Consul Beer Fridge. To drive adoption, a 30% discount on the fridge was offered to anyone adopting an older dog through partner shelters.","team":"Gabo Moraes, Matheus Loretti, Leonardo Rodriguez, Débora Caprioli, Pedro Rosadas e PaPoCo","colors":["#0b2e59","#d9a441","#f2efe8"],"blocks":[{"full":true,"items":[{"k":"V","v":"1089894151","ar":1.76,"w":1.0}]},"meta",{"full":false,"items":[{"k":"I","v":"ohmyd2kbhT0zkEMez0bt5vvoBc.gif","ar":1.78,"w":1.0}]},"about",{"full":false,"items":[{"k":"I","v":"gFdPJrKE2E0IpKxQ6Vexa6P2nhg.gif","ar":1.78,"w":1.0}]},{"full":false,"items":[{"k":"I","v":"AUrjYPM8Ba5WOr3DiJZlBtLTyk.jpg","ar":0.67,"w":0.322},{"k":"I","v":"fX5YfpWwtJKSldtsVGMWqoRnxJs.jpg","ar":1.39,"w":0.66}]},{"full":false,"items":[{"k":"I","v":"e9vkSiI9t4ltPgtXs13Lhf979jM.gif","ar":1.78,"w":0.491},{"k":"I","v":"pFSztLn5Zipc6Y0VvtTUg4Ivok.gif","ar":1.78,"w":0.491}]}],"cover":"ohmyd2kbhT0zkEMez0bt5vvoBc.gif"},
+{"slug":"pssica","rank":"Q","suit":"♠","title":"Pssica Boats","client":"Netflix","agency":"Euphoria","year":"2024","role":"Creative concept, Art direction","overview":"pssica is a brazillian TV show directed by the legendary Fernando Meirelles and his son, Quico. the show is set in Pará, northern brazil, and shows the dark reality of human trafficking and crime that happens along the rivers and deep into the jungle.","about":"in northern Brazil, it's common for boats to have female names, often displayed with beautiful typography and bright colors. unfortunately, many of these boats also are used to transport women trapped in human trafficking and prostitution along the rivers in Pará. we tapped into this sad coincidence to promote the show and also spark some conversation online.","team":"Gabo Moraes, Pedro Arvati, Pedro Ramos, Ket Sales, Ricardo Alonso, Marcelo Rizério and YUCA","colors":["#0d0d0d","#e50914","#1f6f6a"],"blocks":[{"full":true,"items":[{"k":"V","v":"1112909570","ar":1.78,"w":1.0}]},"meta",{"full":false,"items":[{"k":"I","v":"JT384eLkVmZy5deGF9J3oal3hI.gif","ar":1.78,"w":0.694}]},"about",{"full":false,"items":[{"k":"I","v":"mcb4E6gC7YCcdvCxj2pTiVKq6M.gif","ar":1.78,"w":0.694}]},{"full":false,"items":[{"k":"I","v":"MOXXtTRW5hpzOKSFSU6WXlo14.gif","ar":1.78,"w":0.338},{"k":"I","v":"Y9MYbX72YmooiPkbyW2rl0CJZo.gif","ar":1.78,"w":0.338}]},{"full":false,"items":[{"k":"I","v":"eM9dEkXPXrkQW13w6yAJWW6vhI.gif","ar":1.78,"w":0.694}]},{"full":false,"items":[{"k":"I","v":"3AVrhUABmNZDauCmSkNQepqnJw.gif","ar":1.78,"w":0.694}]}],"cover":"JT384eLkVmZy5deGF9J3oal3hI.gif"},
+{"slug":"mclolla","rank":"J","suit":"♦","title":"Lolla '24","client":"McDonald's","agency":"Galeria.ag","year":"2024","role":"Creative concept, Design, Art direction","overview":"mcdonald's became the unofficial go-to meal of lollapalooza brasil. a nice, cheap way to replenish your energies between shows, and an almost mandatory stop in your festival line-up.","about":"in partnership with illustrator Jun Ioneda, we created a vibrant and surreal visual identity to represent our brand inside Lollapalooza Brasil 2024. (also, i got to interview one of the greatest artists in Brazil, no biggie.)","team":"Gabo Moraes, Gabriel Braz, Lais Delcelo, Chico Medeiros, Giulio Beloto, Cris Prado, Rodrigo Marangoni and Jun Ioneda","award":"Bronze, Illustration · Brazilian Creative Club 2024","colors":["#ff4fa3","#ffc72c","#3b2bd6"],"blocks":[{"full":true,"items":[{"k":"I","v":"GVmG5ktu9eK6atOvTeBDB2yFv9s.png","ar":1.78,"w":1.0}]},"meta",{"full":false,"items":[{"k":"I","v":"dgoQtqGxuSvKYf7uzf17tkjQY8c.gif","ar":0.91,"w":0.491},{"k":"I","v":"2uxLpJZB9cmwLwVxSA33PHsiybM.gif","ar":0.91,"w":0.491}]},{"full":false,"items":[{"k":"I","v":"655jebIpqAeEeY4ijxpaEETYxyE.gif","ar":1.0,"w":0.491},{"k":"I","v":"6YXOZ6yBhGApMBFV5qNxFzNuo.gif","ar":1.0,"w":0.491}]},{"full":false,"items":[{"k":"I","v":"xKLwWaWpKDmp5wlwDFDmjfVM7E.png","ar":1.78,"w":1.0}]},"about",{"full":false,"items":[{"k":"I","v":"hhBQcGGoo9JxuIjQKRwyuggLCVM.webp","ar":0.64,"w":0.491},{"k":"I","v":"oN7gvN85lLu49AAG1YOoFq92cA.webp","ar":0.64,"w":0.491}]},{"full":false,"items":[{"k":"I","v":"32ezGlZjpgz8Pmr7uGjHW9jT00.jpg","ar":1.5,"w":1.0}]},{"full":false,"items":[{"k":"I","v":"npHFrewIILnXExba2P1rRkmcBXo.jpg","ar":0.67,"w":0.322},{"k":"I","v":"OoNTeVQt6ojERfoJQlmjJIQJI.jpg","ar":1.39,"w":0.66}]},{"full":false,"items":[{"k":"I","v":"6kNDAzc56tk3YdxkS05Rxq3dQo.webp","ar":0.65,"w":0.491},{"k":"I","v":"9nbdmcunb0I8EJTVal65JRd6gYU.webp","ar":0.65,"w":0.491}]},{"full":false,"items":[{"k":"I","v":"rnxjKfae9zEDvkW9RdjRc7MfC8.jpg","ar":1.39,"w":0.66},{"k":"I","v":"U2R9Ghl2jIH6zHob6n6ImfjMon0.png","ar":0.67,"w":0.322}]},{"full":false,"items":[{"k":"I","v":"id9JtUJ6pxvwnfheJVmrD57xg6E.webp","ar":0.65,"w":0.491},{"k":"I","v":"suQY6Ck8TXSrReFIZ13L748otA.webp","ar":0.65,"w":0.491}]},{"full":false,"items":[{"k":"I","v":"TX32V0USOzLx39YiNPLOIpBYIs4.gif","ar":2.7,"w":1.0}]},{"full":false,"items":[{"k":"I","v":"BQ2aavtQRpoSxlejO2KZfupDE.jpg","ar":1.54,"w":1.0}]}],"cover":"GVmG5ktu9eK6atOvTeBDB2yFv9s.png"},
+{"slug":"nonsense","rank":"10","suit":"♥","title":"Defying Logic","client":"McDonald's","agency":"Galeria.ag","year":"2023","role":"Creative concept, Design, Art direction","overview":"it's not always that getting one of those mind-bending briefs turns into a good thing, but this time it did. we got some of the greatest thinkers in history to try and figure out what is going on in this sandwich: spicy? sweet? crispy? in the end, it makes perfect sense.","about":"the McCrispy Chicken Elite was kind of a confusing sandwich. it was sweet, kinda spicy and crunchy. and we couldn't 100% say it was any of those. so, we created this story where scientists, philosophers and artists would try to figure it out. the veredict? it's delicious.","team":"Gabo Moraes, Luan Alves, Carlos Galazzi, Guzera Alves, Rodrigo Porto, Paladino+CZAR and Punch Audio","award":"In-Book, Film/Art Direction · Brazilian Creative Club 2024","colors":["#3a2a1a","#c9a24a","#da291c"],"blocks":[{"full":true,"items":[{"k":"V","v":"875727093","ar":1.45,"w":1.0}]},"meta",{"full":false,"items":[{"k":"I","v":"DVn26RJCqlMOLxRbjNMEzIZnp8.gif","ar":1.78,"w":1.0}]},{"full":false,"items":[{"k":"I","v":"PA5L1Col1rmYNN182EYGzfxEGk.webp","ar":1.78,"w":0.491},{"k":"I","v":"13i9Sz1A0YM9G656bxFfwGho.webp","ar":1.78,"w":0.491}]},"about",{"full":false,"items":[{"k":"I","v":"CHk6JI3rJ14rRZxgqrWC6MoM7c.webp","ar":2.6,"w":1.0}]},{"full":false,"items":[{"k":"I","v":"DkyAqnh7uglD76tNSgbxDjVMyj8.webp","ar":0.71,"w":0.386},{"k":"I","v":"zjXwR4ncujNpaCiJrTyfM5n1DT8.webp","ar":0.71,"w":0.386}]},{"full":false,"items":[{"k":"I","v":"ZF5RGtWB09QfU3cTd06xw6uPCQ.gif","ar":1.25,"w":0.491},{"k":"I","v":"B9LodRcY6cyw6rlrij0QP0oempk.webp","ar":1.25,"w":0.491}]},{"full":false,"items":[{"k":"I","v":"ZIr8sFkbY70vikfq8hRBnENVbj0.webp","ar":0.71,"w":0.578}]},{"full":false,"items":[{"k":"I","v":"fynQFTOTcbUcFEfoDI59J8MYiW0.webp","ar":1.99,"w":1.0}]},{"full":false,"items":[{"k":"I","v":"C8vtts1k2jI351Z67WoRVBhGm8.webp","ar":0.71,"w":0.386},{"k":"I","v":"9KeORweDWhwioXC4IuOKEfmgT0.webp","ar":0.71,"w":0.386}]},{"full":false,"items":[{"k":"I","v":"JfyojJYBESm4gkAzDnnik60M.webp","ar":2.18,"w":1.0}]},{"full":false,"items":[{"k":"I","v":"DnC5aovH7ASo9FiZD5LpYVKPc.webp","ar":0.71,"w":0.578}]},{"full":false,"items":[{"k":"I","v":"Nn60zdfkrSh2sapCEKxk65XGomE.gif","ar":1.78,"w":1.0}]}],"cover":"DVn26RJCqlMOLxRbjNMEzIZnp8.gif"},
+{"slug":"mcmeltetel","rank":"9","suit":"♦","title":"The Rockstar Meal","client":"McDonald's","agency":"Galeria.ag","year":"2023","role":"Creative concept, Design, Art direction","overview":"for the first edition of The Town, a music festival that's set to be one of the biggest in Brazil, we created a sandwich so good that it should be a star: McMelt The Town.","about":"we created some cool merch for our new rockstar and even did a collab with Marrone (or should i say Post Marrone?) - a true brazillian star - and the crowd went wild!","team":"Gabo Moraes, Luan Alves, Gabriel Braz, Laís Delcelo, Guzera Alves, Rodrigo Porto and recôncavo","colors":["#111111","#da291c","#ffc72c"],"blocks":[{"full":true,"items":[{"k":"V","v":"856519851","ar":1.76,"w":1.0}]},"meta",{"full":false,"items":[{"k":"I","v":"Zs64ltjSsXoOJQMvCrGOMS54nc.webp","ar":1.78,"w":1.0}]},{"full":false,"items":[{"k":"I","v":"AePb9E7yG8Stdh3pA37eHiL550Y.webp","ar":1.78,"w":0.491},{"k":"I","v":"OWBJKnFCtPLcZAlCVP7NNfxZOnE.webp","ar":1.78,"w":0.491}]},"about",{"full":false,"items":[{"k":"V","v":"969178703","ar":1.78,"w":1.0}]},{"full":false,"items":[{"k":"I","v":"fCr6Plx3HHzHWtJ5EZOl6xAyH4.jpg","ar":2.7,"w":1.0}]},{"full":false,"items":[{"k":"I","v":"ogjO3HJF3MXrzB338TsnLbkMu0.jpg","ar":0.67,"w":0.322},{"k":"I","v":"0S96tY7h1GIapqpwgSrmLxJLTlA.jpg","ar":1.39,"w":0.66}]},{"full":false,"items":[{"k":"I","v":"8ENkEd7JGIytiPlTBe6jB2Ww2Fg.jpg","ar":1.39,"w":0.66},{"k":"I","v":"S4XMgF7rSGV6ym7ybQ00VW4Gg8.jpg","ar":0.67,"w":0.322}]}],"cover":"Zs64ltjSsXoOJQMvCrGOMS54nc.webp"},
+{"slug":"dancagatinhodanca","rank":"8","suit":"♥","title":"Dial \"M\" for Love","client":"McDonald's","agency":"Galeria.ag","year":"2022","role":"Creative concept, Art direction","overview":"they say romance is dead. In brazilian Valentine's Day, we went looking for it way back in the 2000's, and didn't hold back: cheesy pick-up lines, outdated looks, \"Dial LOVE to 48022\", hunky TV hosts and, of course, lots of Méqui.","about":"we invited people to send their best pick-up lines and turned them into content for our WhatsApp channel in collaboration with Rodrigo Faro, one of Brazil's most romantic TV hosts. all while reliving the good old days of SMS dating advice.","team":"Gabo Moraes, Luan Alves, Matheus Franzoni, Guzera Alves and Rodrigo Porto","colors":["#ff6fb5","#da291c","#7ad7ff"],"blocks":[{"full":true,"items":[{"k":"V","v":"724544164","ar":1.76,"w":1.0}]},"meta",{"full":false,"items":[{"k":"I","v":"F5foiUMoe1lwaE2xYhFTyDUZFU.webp","ar":1.78,"w":1.0}]},"about",{"full":false,"items":[{"k":"I","v":"mRQizwPmtO0wPvZseFOcsZLSiI.webp","ar":0.6,"w":0.368},{"k":"I","v":"HmMAzRz0eM9Vf2n1vN59t88BY.webp","ar":1.0,"w":0.292},{"k":"I","v":"qR3GysjMefZeDeTry1kyGy1MHI.webp","ar":1.0,"w":0.292}]},{"full":false,"items":[{"k":"I","v":"ISyusT3mpFJQHaK7JiEtPu5c6c.webp","ar":1.0,"w":0.292},{"k":"I","v":"w0VV7NhLexVU1os2Sgz8Cfbdw.webp","ar":1.0,"w":0.292}]}],"cover":"F5foiUMoe1lwaE2xYhFTyDUZFU.webp"},
+{"slug":"inimigosdodetran","rank":"7","suit":"♦","title":"Drive-Thru Signs","client":"McDonald's","agency":"Galeria.ag","year":"2022","role":"Creative concept, Design, Art direction","overview":"strange things happen during Drive-Thru Week. everywhere you look, you see Méqui. all you can do is get in your car, go to the nearest Drive-Thru and hope you don't miss any deals.","about":"","team":"Gabo Moraes, Luan Alves, Guzera, Rodrigo Porto e Paladino+Santa Transmedia","colors":["#1d5c2e","#ffc72c","#f2f2f2"],"blocks":[{"full":true,"items":[{"k":"V","v":"1089919500","ar":1.78,"w":1.0}]},"meta",{"full":false,"items":[{"k":"I","v":"kaei0JczbsjqIH21sZIi2fR2mNg.gif","ar":1.78,"w":1.0}]},{"full":false,"items":[{"k":"I","v":"HccN5YHpHDW2duYsgnv732SNNY.gif","ar":1.78,"w":1.0}]},{"full":false,"items":[{"k":"I","v":"smahaTRfHSQvlf0CfD3aLxsSmI.gif","ar":1.78,"w":1.0}]}],"cover":"kaei0JczbsjqIH21sZIi2fR2mNg.gif"},
+{"slug":"powerup","rank":"6","suit":"♥","title":"Power-Ups","client":"McDonald's","agency":"Galeria.ag","year":"2021","role":"Creative concept, Design, Art direction","overview":"every gamer needs their power-ups. McDonald's wanted to show the world that, whenever you need some boost in your game, they'll be there.","about":"in 2021, we brought McDonald's closer to the gaming community with the \"Méqui, your Player 2\" campaign, which was released along with an ad loaded with references and easter eggs that showed the best power-up for your gaming session is a McDonald's meal.","team":"Gabo Moraes, Luan Alves, Guzera e Rodrigo Porto","colors":["#1a1446","#00e0ff","#ffc72c"],"blocks":[{"full":true,"items":[{"k":"V","v":"1089917685","ar":1.78,"w":1.0}]},"meta",{"full":false,"items":[{"k":"I","v":"Gu9TXMtIUxZLilxYitaTCAEhJH4.gif","ar":1.78,"w":1.0}]},"about",{"full":false,"items":[{"k":"I","v":"ggT8y1EYa6qXnX2VgUV9O2gaPM.gif","ar":1.78,"w":1.0}]},{"full":false,"items":[{"k":"I","v":"hkHE8thpRm1AIRRLWJDHw4sqm6A.gif","ar":1.78,"w":0.491},{"k":"I","v":"PPZSHo906ojHxzovitCmzyD9NGE.gif","ar":1.78,"w":0.491}]},{"full":false,"items":[{"k":"I","v":"LHaatsc2h0mdqJggDaIg0Oij8U.gif","ar":1.78,"w":1.0}]}],"cover":"Gu9TXMtIUxZLilxYitaTCAEhJH4.gif"},
+{"slug":"nerdstuff","rank":"5","suit":"♠","title":"MTG Proxies","client":"Personal project","agency":"","year":"","role":"Card redesign","overview":"I've recently gotten into this game called Magic: The Gathering. For all you non-nerds out there, it's a trading card game, where you build your deck and spend a few hours arguing about rules with your friends.","about":"The thing about MTG that got me, though, was the art. The illustrations on the cards are amazing and there are a LOT of special editions with even cooler designs. So when i found out that people also ocasionally redesign some of their own cards, i had to try it myself. Using Midjourney and some other stuff, i recreated some cards to make them more my own.","team":"Gabo Moraes","colors":["#2b2233","#8f6bd8","#d9c48a"],"blocks":[{"full":true,"items":[{"k":"I","v":"Oidz85Yzc8pDCzPNvIkIhNBWaA.png","ar":1.78,"w":1.0}]},"about",{"full":false,"items":[{"k":"I","v":"f3PcWApJkIZHYQisEK10rmK2dPA.jpg","ar":2.0,"w":1.0}]},{"full":false,"items":[{"k":"I","v":"FO3Dt6IcT8ZI71Viam7KV8vAMWg.jpg","ar":1.33,"w":1.0}]},{"full":false,"items":[{"k":"I","v":"11hrSzEIfrRZ3Sz4qNAZVnB9wY.jpg","ar":2.0,"w":1.0}]},{"full":false,"items":[{"k":"I","v":"GMGi3SkNY7HiKZtm3qI2R6BB4Nw.jpg","ar":1.33,"w":1.0}]},{"full":false,"items":[{"k":"I","v":"wQeBCG3uyXaYjT7N6HrkxdcwJ4.jpg","ar":2.0,"w":1.0}]},{"full":false,"items":[{"k":"I","v":"HuC42swt2sQi4uqqViIjAX4re5U.jpg","ar":1.6,"w":1.0}]},{"full":false,"items":[{"k":"I","v":"6hJGkTfOIPxbCOvzqRKbikenSBM.jpg","ar":2.0,"w":1.0}]},{"full":false,"items":[{"k":"I","v":"C9TlCayWCKVyxWBIe8r77QihON0.png","ar":0.72,"w":0.169},{"k":"I","v":"fn8osAwfnb4z66T7UKFcywLuw.png","ar":0.72,"w":0.169},{"k":"I","v":"oPshGnArMumluuoppRXC5c9U.png","ar":0.72,"w":0.169}]},{"full":false,"items":[{"k":"I","v":"ATz3CFkSOXaYRW8bOoKDMN7i90.png","ar":0.72,"w":0.169},{"k":"I","v":"ZR0xpev98pFBVgSSBdR9DN80s.png","ar":0.72,"w":0.169},{"k":"I","v":"KITXaJWq28FYjhcVWwr4VltlWM.png","ar":0.72,"w":0.169}]},{"full":false,"items":[{"k":"I","v":"OPqW12SOyGra8iQfIcWCQ0aguww.png","ar":0.72,"w":0.169},{"k":"I","v":"Uvs0Dlhxx8tcX6JgbK705ynYJg.png","ar":0.72,"w":0.169},{"k":"I","v":"7hJVM7TKv9QA7BiZASXzc7c6C4.png","ar":0.72,"w":0.169}]}],"cover":"Oidz85Yzc8pDCzPNvIkIhNBWaA.png"}];
 
 const table = document.getElementById("table");
 const deck = document.getElementById("deck");
 const hint = document.getElementById("hint");
 const gatherBtn = document.getElementById("gather");
 const dropzone = document.getElementById("dropzone");
-const sheet = document.getElementById("sheet");
-const jobEl = document.getElementById("job");
+const page = document.getElementById("page");
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const isRed = s => s === "♥" || s === "♦";
 const FRAMER = "https://framerusercontent.com/images/";
@@ -609,7 +324,7 @@ const cards = JOBS.map((job, i) => {
       <div class="front">
         <div class="corner ${c}">${job.rank}<span>${job.suit}</span></div>
         <div class="pip">
-          ${job.images[0] ? `<img class="thumb" alt="" src="${img(job.images[0], 512)}">` : ""}
+          <img class="thumb" alt="" src="${img(job.cover, 512)}">
           <div class="suit ${c}">${job.suit}</div>
           <div class="title">${job.title}</div>
           <div class="cat">${[job.client, job.year].filter(Boolean).join(" · ")}</div>
@@ -729,61 +444,94 @@ function play(card) {
   card.el.classList.remove("in-hand");
   card.el.style.zIndex = 80;
   setPose(card, 0, 0, 0, 1.25);
-  setTimeout(() => openSheet(card.job), reduced ? 0 : 650);
+  setTimeout(() => openPage(card.job), reduced ? 0 : 650);
 }
 
-function poster(job, a, b, d) {
-  return `<div class="poster" style="--a:${a};--b:${b};--d:${d}">
-        <span class="poster-suit">${job.suit}</span>
-        <strong>${job.title}</strong>
-        <span class="poster-meta">${job.client}${job.agency ? " @ " + job.agency : ""}</span>
-      </div>`;
+const esc = t => String(t).replace(/[&<>"]/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[ch]));
+
+function mediaItem(job, it, size) {
+  const style = `flex:${it.ar} 1 0;aspect-ratio:${it.ar}`;
+  if (it.k === "V") {
+    if (!mediaOK) return `<div class="pg-item ph" style="${style}"><a href="https://vimeo.com/${it.v}" target="_blank" rel="noopener">Watch the film ↗</a></div>`;
+    return `<div class="pg-item" style="${style}"><iframe src="https://player.vimeo.com/video/${it.v}?dnt=1&title=0&byline=0&portrait=0" title="${esc(job.title)} film" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>`;
+  }
+  if (!mediaOK) return `<div class="pg-item ph" style="${style}"><span>Image</span></div>`;
+  return `<div class="pg-item" style="${style}"><img alt="${esc(job.title)}" loading="lazy" src="${img(it.v, size)}"></div>`;
 }
 
-function media(job) {
-  const films = job.vimeo.map(v => `<div class="film"><iframe src="https://player.vimeo.com/video/${v}?dnt=1&title=0&byline=0&portrait=0" title="${job.title} film" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>`).join("");
-  const pics = job.images.slice(0, 6).map((f, i) => `<img class="${i === 0 && !job.vimeo.length ? "wide" : ""}" alt="${job.title}, image ${i + 1}" loading="lazy" src="${img(f)}">`).join("");
-  return `<div class="media">${films}<div class="pics">${pics}</div></div>`;
+function renderBlock(job, blk) {
+  if (blk === "meta") {
+    if (!job.year && !job.role) return "";
+    return `<section class="pg-meta pg-pad">
+      <span class="arrow" aria-hidden="true">↳</span>
+      <div><h3>Year</h3><p>${esc(job.year)}</p></div>
+      <div><h3>Role</h3>${job.role.split(/,\s*/).map(r => `<p>${esc(r)}</p>`).join("")}</div>
+      <div class="team"><h3>Team</h3><p>${esc(job.team)}</p></div>
+      <span class="sp"></span>
+    </section>`;
+  }
+  if (blk === "about") {
+    if (!job.about) return "";
+    return `<section class="pg-about pg-pad">
+      <h2>About the project</h2>
+      <div><p>${esc(job.about)}</p>${job.award ? `<p class="award">${esc(job.award)}</p>` : ""}</div>
+    </section>`;
+  }
+  const total = blk.items.reduce((n, it) => n + it.w, 0) + (blk.items.length - 1) * 0.018;
+  const t = Math.min(1, total);
+  const maxw = blk.full || t > .98 ? "100%" : `calc(${t.toFixed(3)} * (100% - 2 * var(--pg-gut)) + 2 * var(--pg-gut))`;
+  const stack = blk.items.length > 1 && blk.items.length < 3 ? " stack" : "";
+  return `<div class="pg-row${blk.full ? " full" : ""}${stack}" style="max-width:${maxw}">${blk.items.map(it => mediaItem(job, it, blk.full || it.w > .6 ? 2048 : 1024)).join("")}</div>`;
 }
 
-function openSheet(job) {
-  const c = isRed(job.suit) ? "red" : "";
-  const [a, b, d] = job.colors;
-  const meta = [job.client, job.agency, job.year].filter(Boolean);
-  const rows = [["Client", job.client], ["Agency", job.agency], ["Year", job.year], ["Role", job.role], ["Team", job.team], ["Award", job.award]]
-    .filter(r => r[1]).map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("");
-  jobEl.innerHTML = `
-    <header class="job-head">
-      <div class="job-rank ${c}">${job.rank}<span>${job.suit}</span></div>
+function openPage(job) {
+  const [a, b] = job.colors;
+  const next = JOBS[(JOBS.indexOf(job) + 1) % JOBS.length];
+  const blocks = job.blocks.slice();
+  if (!blocks.includes("meta")) blocks.splice(1, 0, "meta");
+  if (!blocks.includes("about")) blocks.push("about");
+  page.style.setProperty("--a", a);
+  page.style.setProperty("--b", b);
+  page.innerHTML = `<div class="pg-inner">
+    <nav class="crumbs pg-pad" aria-label="Breadcrumb">
+      <button class="link" data-back>Home</button><span class="arrow" aria-hidden="true">↳</span>
+      <button class="link hot" data-back>Works</button><span class="arrow" aria-hidden="true">↳</span>
+      <span class="here">${esc(job.title)}</span>
+      <span class="rank ${isRed(job.suit) ? "red" : ""}" aria-hidden="true">${job.rank}${job.suit}</span>
+    </nav>
+    <header class="pg-head pg-pad">
       <div>
-        <h2 id="job-title">${job.title}</h2>
-        <div class="job-meta">${meta.map(m => `<span>${m}</span>`).join("")}</div>
+        <h1 id="job-title">${esc(job.title)}</h1>
+        <div class="pg-sub"><span>${esc(job.client)}</span>${job.agency ? `<span>@${esc(job.agency)}</span>` : ""}</div>
       </div>
-      <button class="close" id="close">Back to the table</button>
+      <div><p class="pg-label">Overview</p><p class="over">${esc(job.overview)}</p></div>
     </header>
-    <div class="job-body">
-      <div>
-        <p class="lead">${job.overview}</p>
-        ${job.about ? `<p>${job.about}</p>` : ""}
-        <dl>${rows}</dl>
-        <div class="links">
-          ${!mediaOK ? job.vimeo.map((v, i) => `<a class="full" href="https://vimeo.com/${v}" target="_blank" rel="noopener">Watch the film${job.vimeo.length > 1 ? " " + (i + 1) : ""} ↗</a>`).join("") : ""}
-          <a class="full" href="https://gabomoraes.work/work/${job.slug}" target="_blank" rel="noopener">See the full project ↗</a>
-        </div>
+    ${blocks.map(blk => renderBlock(job, blk)).join("")}
+    <footer>
+      <div class="pg-foot pg-pad">
+        <button class="link" data-back>↳ Back to the table</button>
+        <button class="link next" data-next>Next project ↳<small>${esc(next.title)}</small></button>
       </div>
-      ${mediaOK ? media(job) : poster(job, a, b, d)}
-    </div>`;
-  jobEl.classList.toggle("with-media", mediaOK);
-  sheet.hidden = false;
-  requestAnimationFrame(() => sheet.classList.add("open"));
-  document.getElementById("close").addEventListener("click", closeSheet);
-  document.getElementById("close").focus({ preventScroll: true });
+      <div class="pg-social pg-pad">
+        <span class="who">Gabo Moraes · Creative art director</span>
+        <a href="https://www.instagram.com/moraesgabo" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.linkedin.com/in/moraesgabo/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://gabomoraes.work/work/${job.slug}" target="_blank" rel="noopener">Original page ↗</a>
+      </div>
+    </footer>
+  </div>`;
+  page.querySelectorAll("[data-back]").forEach(el => el.addEventListener("click", () => closePage()));
+  page.querySelector("[data-next]").addEventListener("click", () => closePage(cards[JOBS.indexOf(next)]));
+  page.scrollTop = 0;
+  page.hidden = false;
+  requestAnimationFrame(() => requestAnimationFrame(() => page.classList.add("open")));
+  page.querySelector("[data-back]").focus({ preventScroll: true });
 }
 
-function closeSheet() {
+function closePage(thenPlay) {
   if (state !== "playing") return;
-  sheet.classList.remove("open");
-  setTimeout(() => (sheet.hidden = true), reduced ? 0 : 350);
+  page.classList.remove("open");
+  setTimeout(() => { page.hidden = true; page.innerHTML = ""; }, reduced ? 0 : 400);
   const card = playing;
   playing = null;
   const p = handPose(card.i, cards.length);
@@ -792,13 +540,13 @@ function closeSheet() {
   setTimeout(() => {
     card.el.classList.add("in-hand");
     state = "hand";
+    if (thenPlay) return play(thenPlay);
     hint.classList.add("on");
     card.el.focus({ preventScroll: true });
   }, reduced ? 0 : 500);
 }
 
-sheet.addEventListener("click", e => { if (e.target === sheet) closeSheet(); });
-document.addEventListener("keydown", e => { if (e.key === "Escape") closeSheet(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") closePage(); });
 deck.addEventListener("click", deal);
 gatherBtn.addEventListener("click", gather);
 
