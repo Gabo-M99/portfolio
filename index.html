@@ -6,20 +6,21 @@
 <meta name="description" content="Gabo Moraes, creative art director based in São Paulo. Click to deal.">
 <title>Gabo Portfolio Deck</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Inter+Tight:wght@300;400&family=Inter:wght@400&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400&family=Inter:wght@400&display=swap">
 <style>
-/* Layout: one-screen card table seen from above. Deck centered, the hand fans out along the bottom edge toward the viewer. */
+/* Layout: one-screen card table seen from above, in the same black / Inter Tight / yellow system as the job pages.
+   Deck centered, the hand fans out along the bottom edge toward the viewer. */
 :root {
-  --felt: #0f3d3a;
-  --felt-deep: #082624;
-  --card: #f7f6f2;
-  --ink: #17201f;
-  --back: #7a1f2b;
-  --brass: #c9a24a;
-  --muted: #9fb8b4;
-  --display: "Gloock", "Georgia", serif;
-  --body: "Bricolage Grotesque", system-ui, sans-serif;
-  --mono: "JetBrains Mono", ui-monospace, monospace;
+  --bg: #000;
+  --table: #0b0b0b;
+  --fg: #faf5f5;
+  --dim: #8f8f8f;
+  --faint: #666;
+  --line: #222;
+  --hot: #ffff00;
+  --face: #111;
+  --font: "Inter Tight", "Inter", system-ui, sans-serif;
+  --label: "Inter", "Inter Tight", system-ui, sans-serif;
   --cw: clamp(78px, 13vw, 150px);
   --ch: calc(var(--cw) * 1.4);
   color-scheme: dark;
@@ -28,9 +29,9 @@
 html, body { height: 100%; }
 body {
   margin: 0;
-  background: var(--felt-deep);
-  color: var(--card);
-  font-family: var(--body);
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
   overflow: hidden;
 }
 .table {
@@ -40,35 +41,38 @@ body {
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
   box-sizing: border-box;
-  background:
-    radial-gradient(ellipse at 50% 42%, rgba(255,255,255,.07), transparent 60%),
-    repeating-linear-gradient(45deg, rgba(0,0,0,.035) 0 2px, transparent 2px 5px),
-    radial-gradient(ellipse at 50% 50%, var(--felt) 0%, var(--felt-deep) 100%);
+  background: radial-gradient(ellipse at 50% 45%, var(--table) 0%, var(--bg) 70%);
   touch-action: none;
   user-select: none;
 }
 .rail {
-  position: absolute; inset: 14px;
-  border: 1px solid rgba(201,162,74,.28);
-  border-radius: 28px;
+  position: absolute; inset: 76px clamp(16px, 1.75vw, 30px) 16px;
+  border: 1px solid var(--line);
+  border-radius: clamp(12px, 1.75vw, 30px);
   pointer-events: none;
 }
 .brand {
-  position: absolute; top: 28px; left: 0; right: 0;
-  display: flex; justify-content: space-between; align-items: baseline;
-  padding-left: max(36px, calc(env(safe-area-inset-left, 0px) + 20px));
-  padding-right: max(36px, calc(env(safe-area-inset-right, 0px) + 20px));
+  position: absolute; top: 0; left: 0; right: 0;
+  display: flex; justify-content: space-between; align-items: flex-start;
+  padding: 18px max(clamp(16px, 1.75vw, 30px), env(safe-area-inset-right, 0px)) 0 max(clamp(16px, 1.75vw, 30px), env(safe-area-inset-left, 0px));
   gap: 16px;
-  pointer-events: none;
+  z-index: 70;
+  font-size: clamp(15px, 1.2vw, 20px);
+  text-transform: uppercase;
 }
-.brand h1 { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(20px, 3vw, 30px); letter-spacing: .01em; }
-.brand p { margin: 0; font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.brand h1 { margin: 0; font-weight: 400; font-size: inherit; line-height: 1.2; }
+.brand h1 span { color: var(--hot); }
+.brand .role { display: block; margin-top: 4px; font-family: var(--label); font-size: 12px; color: var(--faint); }
+.brand nav { display: flex; gap: clamp(16px, 2.6vw, 42px); align-items: baseline; }
+.brand nav a { color: var(--fg); text-decoration: none; text-transform: none; }
+.brand nav a:hover, .brand nav a:focus-visible { color: var(--hot); outline: none; }
+.brand .clock { white-space: nowrap; color: var(--dim); font-weight: 300; font-size: .85em; font-variant-numeric: tabular-nums; }
 .hint {
   position: absolute; left: 0; right: 0; top: 42%; margin: 0;
   text-align: center;
-  font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
-  color: var(--muted);
-  transform: translateY(calc(var(--ch) * -0.5 - 44px));
+  font-family: var(--label); font-size: 12px; text-transform: uppercase;
+  color: var(--faint);
+  transform: translateY(calc(var(--ch) * -0.5 - 40px));
   opacity: 0; transition: opacity .5s;
   pointer-events: none;
   padding-inline: 16px;
@@ -78,13 +82,13 @@ body {
   position: absolute; left: 50%; top: 42%;
   width: calc(var(--cw) * 1.5); height: calc(var(--ch) * 1.5);
   transform: translate(-50%, -50%);
-  border: 1.5px dashed rgba(201,162,74,.0);
+  border: 1px dashed transparent;
   border-radius: 14px;
   transition: border-color .3s, background .3s;
   pointer-events: none;
 }
-.dropzone.on { border-color: rgba(201,162,74,.45); }
-.dropzone.hot { border-color: var(--brass); background: rgba(201,162,74,.08); }
+.dropzone.on { border-color: rgba(255,255,0,.35); }
+.dropzone.hot { border-color: var(--hot); background: rgba(255,255,0,.05); }
 
 /* Deck */
 .deck {
@@ -92,35 +96,35 @@ body {
   width: var(--cw); height: var(--ch);
   transform: translate(-50%, -50%);
   border: 0; padding: 0; background: none; cursor: pointer;
+  font: inherit; color: inherit;
 }
-.deck .stack { position: absolute; inset: 0; border-radius: 9px; }
-.deck:focus-visible { outline: 2px solid var(--brass); outline-offset: 8px; border-radius: 10px; }
+.deck .stack { position: absolute; inset: 0; border-radius: 10px; }
+.deck:focus-visible { outline: 2px solid var(--hot); outline-offset: 8px; border-radius: 10px; }
 .deal-label {
   position: absolute; left: 50%; top: calc(100% + 26px);
   transform: translateX(-50%);
   white-space: nowrap;
-  font-family: var(--display); font-size: clamp(22px, 3.2vw, 34px);
-  color: var(--card);
+  font-family: var(--font); font-weight: 400; font-size: clamp(26px, 3vw, 46px); line-height: 1;
+  text-transform: uppercase;
+  color: var(--fg);
   animation: breathe 2.4s ease-in-out infinite;
 }
-.deal-label small { display: block; text-align: center; font-family: var(--mono); font-size: 10px; letter-spacing: .2em; color: var(--brass); margin-top: 6px; }
-@keyframes breathe { 50% { opacity: .55; } }
+.deal-label small { display: block; text-align: center; font-family: var(--label); font-size: 12px; color: var(--hot); margin-top: 10px; }
+@keyframes breathe { 50% { opacity: .5; } }
 .deck.dealt .deal-label { opacity: 0; animation: none; transition: opacity .3s; }
 
 .back-face {
-  background-color: var(--back);
-  background-image:
-    repeating-linear-gradient(45deg, rgba(201,162,74,.35) 0 1px, transparent 1px 9px),
-    repeating-linear-gradient(-45deg, rgba(201,162,74,.35) 0 1px, transparent 1px 9px);
-  border: 5px solid var(--card);
+  background-color: #050505;
+  background-image: repeating-linear-gradient(135deg, #141414 0 1px, transparent 1px 7px);
+  border: 1px solid #2a2a2a;
   box-sizing: border-box;
-  border-radius: 9px;
-  box-shadow: inset 0 0 0 2px var(--brass);
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 calc(var(--cw) * .05) #050505, inset 0 0 0 calc(var(--cw) * .05 + 1px) rgba(255,255,0,.55);
 }
 .back-face::after {
-  content: "G*"; position: absolute; inset: 0;
+  content: "GABO*"; position: absolute; inset: 0;
   display: grid; place-items: center;
-  font-family: var(--display); font-size: calc(var(--cw) * .38); color: var(--brass);
+  font-family: var(--font); font-weight: 400; font-size: calc(var(--cw) * .17); color: var(--hot);
 }
 
 /* Cards */
@@ -133,10 +137,11 @@ body {
   cursor: grab;
   transition: transform .7s cubic-bezier(.2,.8,.2,1);
   will-change: transform;
+  font: inherit; color: inherit;
 }
 .card.dragging { transition: none; cursor: grabbing; z-index: 50 !important; }
 .card:focus-visible { outline: none; }
-.card:focus-visible .front { box-shadow: 0 0 0 3px var(--brass), 0 10px 24px rgba(0,0,0,.4); }
+.card:focus-visible .front { box-shadow: 0 0 0 2px var(--hot), 0 10px 24px rgba(0,0,0,.6); }
 .inner {
   position: absolute; inset: 0;
   transform-style: preserve-3d;
@@ -147,41 +152,41 @@ body {
 .front, .back-face {
   position: absolute; inset: 0;
   backface-visibility: hidden; -webkit-backface-visibility: hidden;
-  box-shadow: 0 6px 18px rgba(0,0,0,.35);
+  box-shadow: 0 8px 24px rgba(0,0,0,.7);
 }
 .back-face { transform: rotateY(180deg); }
 .front {
-  background: var(--card); color: var(--ink);
-  border-radius: 9px;
+  background: var(--face); color: var(--fg);
+  border: 1px solid #2a2a2a;
+  border-radius: 10px;
   display: grid; grid-template-rows: auto 1fr auto;
   padding: calc(var(--cw) * .07);
   box-sizing: border-box;
   text-align: left;
   overflow: hidden;
 }
-.corner { font-family: var(--display); line-height: .9; font-size: calc(var(--cw) * .17); }
+.corner { font-family: var(--font); font-weight: 400; line-height: .95; font-size: calc(var(--cw) * .15); }
 .corner span { display: block; font-size: .8em; }
 .corner.bottom { justify-self: end; transform: rotate(180deg); }
-.red { color: #b3263a; }
+.red { color: var(--hot); }
 .pip {
   display: grid; place-items: center; align-content: center; gap: 4px;
   text-align: center;
 }
 .pip .suit { font-size: calc(var(--cw) * .32); line-height: 1; }
-.pip .title { font-family: var(--body); font-weight: 800; font-size: calc(var(--cw) * .1); line-height: 1.05; text-wrap: balance; }
-.pip .cat { font-family: var(--mono); font-size: calc(var(--cw) * .062); letter-spacing: .08em; text-transform: uppercase; opacity: .6; }
+.pip .title { font-family: var(--font); font-weight: 400; font-size: calc(var(--cw) * .095); line-height: 1.05; text-transform: uppercase; text-wrap: balance; }
+.pip .cat { font-family: var(--label); font-size: calc(var(--cw) * .06); text-transform: uppercase; color: var(--dim); }
 .card.in-hand:hover:not(.dragging) { transform: var(--rest) translateY(-18px) !important; }
 
 .gather {
-  position: absolute; right: max(32px, calc(env(safe-area-inset-right, 0px) + 20px)); top: 72px;
-  font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
-  color: var(--muted); background: transparent; border: 1px solid rgba(159,184,180,.35);
-  border-radius: 999px; padding: 8px 14px; cursor: pointer;
+  position: absolute; left: 50%; transform: translateX(-50%); top: 92px;
+  font-family: var(--font); font-size: clamp(15px, 1.2vw, 18px); text-transform: uppercase;
+  color: var(--hot); background: transparent; border: 0; padding: 6px 10px; cursor: pointer;
   opacity: 0; pointer-events: none; transition: opacity .4s;
   z-index: 60;
 }
 .gather.on { opacity: 1; pointer-events: auto; }
-.gather:hover, .gather:focus-visible { color: var(--card); border-color: var(--brass); outline: none; }
+.gather:hover, .gather:focus-visible { color: var(--fg); outline: none; }
 
 .pip .thumb { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 4px; display: block; margin-bottom: 4px; }
 .card.has-thumb .pip .suit, .card.has-thumb .corner.bottom { display: none; }
@@ -210,8 +215,8 @@ body {
 .crumbs .arrow { opacity: .8; }
 .page .crumbs .hot { color: var(--pg-hot); }
 .crumbs .here { color: var(--pg-fg); }
-.crumbs .rank { margin-left: auto; font-family: var(--display); font-size: 1.3em; color: var(--pg-fg); text-transform: none; }
-.crumbs .rank.red { color: #ff4d5e; }
+.crumbs .rank { margin-left: auto; font-size: 1.1em; color: var(--pg-fg); text-transform: none; }
+.crumbs .rank.red { color: var(--pg-hot); }
 .crumbs button.link:hover { color: var(--pg-fg); }
 .pg-head { display: grid; grid-template-columns: 1fr 1fr; gap: 24px var(--pg-gut); padding-block: clamp(32px, 5vw, 80px) clamp(28px, 4vw, 64px); align-items: start; }
 .pg-head > * { min-width: 0; }
@@ -253,7 +258,7 @@ body {
   .pg-row:not(.full).stack { flex-direction: column; }
   .pg-row:not(.full).stack .pg-item { flex: none !important; width: 100%; }
 }
-@media (max-width: 640px) { .brand p { display: none; } }
+@media (max-width: 560px) { .brand nav a { display: none; } }
 @media (prefers-reduced-motion: reduce) {
   .card, .inner, .page { transition-duration: .01s !important; }
   .deal-label { animation: none; }
@@ -264,15 +269,19 @@ body {
 <main class="table" id="table">
   <div class="rail"></div>
   <header class="brand">
-    <h1>Gabo<span style="color:var(--brass)">*</span></h1>
-    <p>Creative art director · São Paulo, Brasil</p>
+    <h1>Gabo<span>*</span><span class="role">Creative art director · Based in São Paulo, Brasil</span></h1>
+    <nav aria-label="Contact">
+      <a href="https://www.instagram.com/moraesgabo" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.linkedin.com/in/moraesgabo/" target="_blank" rel="noopener">LinkedIn</a>
+      <span class="clock" id="clock"></span>
+    </nav>
   </header>
   <div class="dropzone" id="dropzone"></div>
   <p class="hint" id="hint">Drag a card to the table, or tap it, to play</p>
   <button class="deck" id="deck" aria-label="Deal the cards">
     <div class="deal-label">Click to Deal<small>10 JOBS IN THE DECK</small></div>
   </button>
-  <button class="gather" id="gather">Gather cards</button>
+  <button class="gather" id="gather">↳ Gather cards</button>
 </main>
 
 <div class="page" id="page" hidden role="dialog" aria-modal="true" aria-labelledby="job-title"></div>
@@ -547,6 +556,11 @@ function closePage(thenPlay) {
 }
 
 document.addEventListener("keydown", e => { if (e.key === "Escape") closePage(); });
+// São Paulo time, as on the original site.
+const clockEl = document.getElementById("clock");
+const tick = () => { clockEl.textContent = new Date().toLocaleTimeString("en-US", { timeZone: "America/Sao_Paulo", hour: "numeric", minute: "2-digit" }) + " SP"; };
+tick(); setInterval(tick, 15000);
+
 deck.addEventListener("click", deal);
 gatherBtn.addEventListener("click", gather);
 
