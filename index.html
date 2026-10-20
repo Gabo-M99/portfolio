@@ -1,0 +1,846 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Gabo Moraes, creative art director based in São Paulo. Click to deal.">
+<title>Gabo Portfolio Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: one-screen card table seen from above. Deck centered, the hand fans out along the bottom edge toward the viewer. */
+:root {
+  --felt: #0f3d3a;
+  --felt-deep: #082624;
+  --card: #f7f6f2;
+  --ink: #17201f;
+  --back: #7a1f2b;
+  --brass: #c9a24a;
+  --muted: #9fb8b4;
+  --display: "Gloock", "Georgia", serif;
+  --body: "Bricolage Grotesque", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+  --cw: clamp(78px, 13vw, 150px);
+  --ch: calc(var(--cw) * 1.4);
+  color-scheme: dark;
+}
+[hidden] { display: none !important; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: var(--felt-deep);
+  color: var(--card);
+  font-family: var(--body);
+  overflow: hidden;
+}
+.table {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  box-sizing: border-box;
+  background:
+    radial-gradient(ellipse at 50% 42%, rgba(255,255,255,.07), transparent 60%),
+    repeating-linear-gradient(45deg, rgba(0,0,0,.035) 0 2px, transparent 2px 5px),
+    radial-gradient(ellipse at 50% 50%, var(--felt) 0%, var(--felt-deep) 100%);
+  touch-action: none;
+  user-select: none;
+}
+.rail {
+  position: absolute; inset: 14px;
+  border: 1px solid rgba(201,162,74,.28);
+  border-radius: 28px;
+  pointer-events: none;
+}
+.brand {
+  position: absolute; top: 28px; left: 0; right: 0;
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding-left: max(36px, calc(env(safe-area-inset-left, 0px) + 20px));
+  padding-right: max(36px, calc(env(safe-area-inset-right, 0px) + 20px));
+  gap: 16px;
+  pointer-events: none;
+}
+.brand h1 { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(20px, 3vw, 30px); letter-spacing: .01em; }
+.brand p { margin: 0; font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.hint {
+  position: absolute; left: 0; right: 0; top: 42%; margin: 0;
+  text-align: center;
+  font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--muted);
+  transform: translateY(calc(var(--ch) * -0.5 - 44px));
+  opacity: 0; transition: opacity .5s;
+  pointer-events: none;
+  padding-inline: 16px;
+}
+.hint.on { opacity: 1; }
+.dropzone {
+  position: absolute; left: 50%; top: 42%;
+  width: calc(var(--cw) * 1.5); height: calc(var(--ch) * 1.5);
+  transform: translate(-50%, -50%);
+  border: 1.5px dashed rgba(201,162,74,.0);
+  border-radius: 14px;
+  transition: border-color .3s, background .3s;
+  pointer-events: none;
+}
+.dropzone.on { border-color: rgba(201,162,74,.45); }
+.dropzone.hot { border-color: var(--brass); background: rgba(201,162,74,.08); }
+
+/* Deck */
+.deck {
+  position: absolute; left: 50%; top: 42%;
+  width: var(--cw); height: var(--ch);
+  transform: translate(-50%, -50%);
+  border: 0; padding: 0; background: none; cursor: pointer;
+}
+.deck .stack { position: absolute; inset: 0; border-radius: 9px; }
+.deck:focus-visible { outline: 2px solid var(--brass); outline-offset: 8px; border-radius: 10px; }
+.deal-label {
+  position: absolute; left: 50%; top: calc(100% + 26px);
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-family: var(--display); font-size: clamp(22px, 3.2vw, 34px);
+  color: var(--card);
+  animation: breathe 2.4s ease-in-out infinite;
+}
+.deal-label small { display: block; text-align: center; font-family: var(--mono); font-size: 10px; letter-spacing: .2em; color: var(--brass); margin-top: 6px; }
+@keyframes breathe { 50% { opacity: .55; } }
+.deck.dealt .deal-label { opacity: 0; animation: none; transition: opacity .3s; }
+
+.back-face {
+  background-color: var(--back);
+  background-image:
+    repeating-linear-gradient(45deg, rgba(201,162,74,.35) 0 1px, transparent 1px 9px),
+    repeating-linear-gradient(-45deg, rgba(201,162,74,.35) 0 1px, transparent 1px 9px);
+  border: 5px solid var(--card);
+  box-sizing: border-box;
+  border-radius: 9px;
+  box-shadow: inset 0 0 0 2px var(--brass);
+}
+.back-face::after {
+  content: "G*"; position: absolute; inset: 0;
+  display: grid; place-items: center;
+  font-family: var(--display); font-size: calc(var(--cw) * .38); color: var(--brass);
+}
+
+/* Cards */
+.card {
+  position: absolute; left: 50%; top: 42%;
+  width: var(--cw); height: var(--ch);
+  margin: calc(var(--ch) / -2) 0 0 calc(var(--cw) / -2);
+  border: 0; padding: 0; background: none;
+  perspective: 900px;
+  cursor: grab;
+  transition: transform .7s cubic-bezier(.2,.8,.2,1);
+  will-change: transform;
+}
+.card.dragging { transition: none; cursor: grabbing; z-index: 50 !important; }
+.card:focus-visible { outline: none; }
+.card:focus-visible .front { box-shadow: 0 0 0 3px var(--brass), 0 10px 24px rgba(0,0,0,.4); }
+.inner {
+  position: absolute; inset: 0;
+  transform-style: preserve-3d;
+  transition: transform .6s cubic-bezier(.3,.7,.2,1);
+  transform: rotateY(180deg);
+}
+.card.up .inner { transform: rotateY(0deg); }
+.front, .back-face {
+  position: absolute; inset: 0;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,.35);
+}
+.back-face { transform: rotateY(180deg); }
+.front {
+  background: var(--card); color: var(--ink);
+  border-radius: 9px;
+  display: grid; grid-template-rows: auto 1fr auto;
+  padding: calc(var(--cw) * .07);
+  box-sizing: border-box;
+  text-align: left;
+  overflow: hidden;
+}
+.corner { font-family: var(--display); line-height: .9; font-size: calc(var(--cw) * .17); }
+.corner span { display: block; font-size: .8em; }
+.corner.bottom { justify-self: end; transform: rotate(180deg); }
+.red { color: #b3263a; }
+.pip {
+  display: grid; place-items: center; align-content: center; gap: 4px;
+  text-align: center;
+}
+.pip .suit { font-size: calc(var(--cw) * .32); line-height: 1; }
+.pip .title { font-family: var(--body); font-weight: 800; font-size: calc(var(--cw) * .1); line-height: 1.05; text-wrap: balance; }
+.pip .cat { font-family: var(--mono); font-size: calc(var(--cw) * .062); letter-spacing: .08em; text-transform: uppercase; opacity: .6; }
+.card.in-hand:hover:not(.dragging) { transform: var(--rest) translateY(-18px) !important; }
+
+.gather {
+  position: absolute; right: max(32px, calc(env(safe-area-inset-right, 0px) + 20px)); top: 72px;
+  font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--muted); background: transparent; border: 1px solid rgba(159,184,180,.35);
+  border-radius: 999px; padding: 8px 14px; cursor: pointer;
+  opacity: 0; pointer-events: none; transition: opacity .4s;
+  z-index: 60;
+}
+.gather.on { opacity: 1; pointer-events: auto; }
+.gather:hover, .gather:focus-visible { color: var(--card); border-color: var(--brass); outline: none; }
+
+/* Job sheet */
+.sheet {
+  position: fixed; inset: 0; z-index: 100;
+  display: grid; place-items: center;
+  background: rgba(4,18,17,.72);
+  backdrop-filter: blur(6px);
+  padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+  opacity: 0; transition: opacity .35s;
+}
+.sheet.open { opacity: 1; }
+.job {
+  width: min(880px, 100%); max-height: 100%;
+  overflow: auto;
+  background: var(--card); color: var(--ink);
+  border-radius: 16px;
+  box-shadow: 0 30px 80px rgba(0,0,0,.5);
+  transform: translateY(24px) scale(.97); transition: transform .45s cubic-bezier(.2,.8,.2,1);
+}
+.sheet.open .job { transform: none; }
+.job-head {
+  display: grid; grid-template-columns: auto 1fr auto; gap: 20px; align-items: start;
+  padding: 28px 28px 20px;
+  border-bottom: 1px solid rgba(23,32,31,.12);
+}
+.job-rank { font-family: var(--display); font-size: 54px; line-height: .85; }
+.job-rank span { display: block; font-size: 34px; }
+.job-head h2 { margin: 2px 0 6px; font-family: var(--display); font-weight: 400; font-size: clamp(28px, 4vw, 42px); line-height: 1.02; text-wrap: balance; }
+.job-meta { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #5d6b69; display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.close {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+  background: var(--ink); color: var(--card); border: 0; border-radius: 999px; padding: 9px 14px; cursor: pointer;
+}
+.close:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+.job-body { display: grid; grid-template-columns: 1.3fr 1fr; gap: 28px; padding: 24px 28px 32px; }
+.job-body > * { min-width: 0; }
+.job-body p { margin: 0 0 14px; font-size: 16px; line-height: 1.55; max-width: 60ch; }
+.job-body dl { margin: 18px 0 0; display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; font-size: 14px; }
+.job-body dt { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #5d6b69; padding-top: 2px; }
+.job-body dd { margin: 0; }
+.pip .thumb { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 4px; display: block; margin-bottom: 4px; }
+.card.has-thumb .pip .suit, .card.has-thumb .corner.bottom { display: none; }
+.links { display: flex; flex-wrap: wrap; gap: 4px 22px; }
+.media { display: grid; gap: 10px; align-self: start; min-width: 0; }
+.film { position: relative; aspect-ratio: 16 / 9; max-width: 100%; border-radius: 10px; overflow: hidden; background: var(--ink); }
+.film iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.pics { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.pics img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 8px; display: block; background: #e7e5df; }
+.pics img.wide { grid-column: span 2; aspect-ratio: 16 / 9; }
+.job.with-media .job-body { grid-template-columns: 1fr 1.25fr; }
+.job-body .lead { font-size: 19px; line-height: 1.45; font-weight: 600; }
+.job-body dd { line-height: 1.45; }
+.full { display: inline-block; margin-top: 20px; font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); border-bottom: 1.5px solid var(--back); padding-bottom: 3px; text-decoration: none; }
+.full:hover, .full:focus-visible { color: var(--back); outline: none; }
+.poster {
+  position: relative; align-self: start;
+  aspect-ratio: 4/5; max-width: 100%;
+  border-radius: 12px; overflow: hidden;
+  background: linear-gradient(150deg, var(--a) 0%, var(--a) 55%, var(--b) 100%);
+  color: var(--d);
+  display: flex; flex-direction: column; justify-content: flex-end; gap: 10px;
+  padding: 24px; box-sizing: border-box;
+}
+.poster-suit { position: absolute; top: 14px; right: 20px; font-size: 120px; line-height: 1; opacity: .22; color: var(--b); }
+.poster strong { font-family: var(--display); font-weight: 400; font-size: clamp(34px, 5vw, 56px); line-height: .95; text-wrap: balance; }
+.poster-meta { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; opacity: .85; }
+.shots { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.shot { border-radius: 8px; aspect-ratio: 4/3; max-width: 100%; display: grid; place-items: end start; padding: 10px; box-sizing: border-box; font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.85); }
+.shot.wide { grid-column: span 2; aspect-ratio: 16/9; }
+.placeholder-note { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: #8a9593; margin-top: 10px; }
+
+@media (max-width: 640px) {
+  .job-head { grid-template-columns: auto 1fr; padding: 22px 20px 16px; }
+  .job-head .close { grid-column: 1 / -1; justify-self: start; grid-row: 1; }
+  .job-body, .job.with-media .job-body { grid-template-columns: 1fr; padding: 20px; }
+  .brand p { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card, .inner, .job, .sheet { transition-duration: .01s !important; }
+  .deal-label { animation: none; }
+}
+</style>
+</head>
+<body>
+<main class="table" id="table">
+  <div class="rail"></div>
+  <header class="brand">
+    <h1>Gabo<span style="color:var(--brass)">*</span></h1>
+    <p>Creative art director · São Paulo, Brasil</p>
+  </header>
+  <div class="dropzone" id="dropzone"></div>
+  <p class="hint" id="hint">Drag a card to the table, or tap it, to play</p>
+  <button class="deck" id="deck" aria-label="Deal the cards">
+    <div class="deal-label">Click to Deal<small>10 JOBS IN THE DECK</small></div>
+  </button>
+  <button class="gather" id="gather">Gather cards</button>
+</main>
+
+<div class="sheet" id="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="job-title">
+  <article class="job" id="job"></article>
+</div>
+
+<script>
+// Jobs exported from gabomoraes.work (2026-10-20). Images live on Framer's CDN, films on Vimeo.
+const JOBS = [
+ {
+  "slug": "mequiverse",
+  "rank": "A",
+  "suit": "♥",
+  "title": "Méquiverse",
+  "client": "McDonald's",
+  "agency": "Galeria.ag",
+  "year": "2023",
+  "role": "Creative concept, Design, Art direction",
+  "overview": "recent NASA studies confirm: the CBO comeback is one of the hottest topics in the multiverse right now. that's why, when we released its successor, people came from all realities for a piece of it.",
+  "about": "the CBO is one of Brazil's favourite McDonald's sandwiches, even sparking a giant online campaign for its return once it went away. we had the opportunity to bring it back with some changes to the original recipe, so we called it an alternate universe's CBO and made a campaign telling the story of how it got here, starting with a TV ad and eventually following up with a full-on comic book run.",
+  "team": "Gabo Moraes, Luan Alves, Guzera, Rodrigo Porto, Paladino+Santa Transmedia and Thobias Daneluz",
+  "colors": [
+   "#2a1b6b",
+   "#da291c",
+   "#ffc72c"
+  ],
+  "images": [
+   "FEKkyQ2mcqwkAuUWoMeUhD5aQ4.gif",
+   "ncpj89fnbrXHzuMRvSKggRmxDJE.gif",
+   "rDa5erQcK4Z4nXXBOQzEhjvqKFI.gif",
+   "PbWXIYt9Ss9qegzcvEgmKgPser8.png",
+   "s1ZKtAbZo6fyiLz5KOCD9h8s.jpg",
+   "APITv7B43lrSrGQqhtfsAdXAkiE.jpg"
+  ],
+  "vimeo": [
+   "802156788"
+  ]
+ },
+ {
+  "slug": "woofridge",
+  "rank": "K",
+  "suit": "♣",
+  "title": "Beer Buddies",
+  "client": "Consul",
+  "agency": "DM9/DDB",
+  "year": "2025",
+  "role": "Design, Art direction",
+  "overview": "in Brazil, older dogs are 5x times less likely to be adopted than puppies. so, we decided to teach them a new trick to help them out - and sell some beer fridges in the process.",
+  "about": "Consul partnered with pet trainer Alexandre Rossi (Dr. Pet) and nonprofit shelters to train senior shelter dogs to fetch beers on command from the Consul Beer Fridge. To drive adoption, a 30% discount on the fridge was offered to anyone adopting an older dog through partner shelters.",
+  "team": "Gabo Moraes, Matheus Loretti, Leonardo Rodriguez, Débora Caprioli, Pedro Rosadas e PaPoCo",
+  "colors": [
+   "#0b2e59",
+   "#d9a441",
+   "#f2efe8"
+  ],
+  "images": [
+   "ohmyd2kbhT0zkEMez0bt5vvoBc.gif",
+   "gFdPJrKE2E0IpKxQ6Vexa6P2nhg.gif",
+   "AUrjYPM8Ba5WOr3DiJZlBtLTyk.jpg",
+   "fX5YfpWwtJKSldtsVGMWqoRnxJs.jpg",
+   "e9vkSiI9t4ltPgtXs13Lhf979jM.gif",
+   "pFSztLn5Zipc6Y0VvtTUg4Ivok.gif"
+  ],
+  "vimeo": [
+   "1089894151"
+  ]
+ },
+ {
+  "slug": "pssica",
+  "rank": "Q",
+  "suit": "♠",
+  "title": "Pssica Boats",
+  "client": "Netflix",
+  "agency": "Euphoria",
+  "year": "2024",
+  "role": "Creative concept, Art direction",
+  "overview": "pssica is a brazillian TV show directed by the legendary Fernando Meirelles and his son, Quico. the show is set in Pará, northern brazil, and shows the dark reality of human trafficking and crime that happens along the rivers and deep into the jungle.",
+  "about": "in northern Brazil, it's common for boats to have female names, often displayed with beautiful typography and bright colors. unfortunately, many of these boats also are used to transport women trapped in human trafficking and prostitution along the rivers in Pará. we tapped into this sad coincidence to promote the show and also spark some conversation online.",
+  "team": "Gabo Moraes, Pedro Arvati, Pedro Ramos, Ket Sales, Ricardo Alonso, Marcelo Rizério and YUCA",
+  "colors": [
+   "#0d0d0d",
+   "#e50914",
+   "#1f6f6a"
+  ],
+  "images": [
+   "JT384eLkVmZy5deGF9J3oal3hI.gif",
+   "mcb4E6gC7YCcdvCxj2pTiVKq6M.gif",
+   "MOXXtTRW5hpzOKSFSU6WXlo14.gif",
+   "Y9MYbX72YmooiPkbyW2rl0CJZo.gif",
+   "eM9dEkXPXrkQW13w6yAJWW6vhI.gif",
+   "3AVrhUABmNZDauCmSkNQepqnJw.gif"
+  ],
+  "vimeo": [
+   "1112909570"
+  ]
+ },
+ {
+  "slug": "mclolla",
+  "rank": "J",
+  "suit": "♦",
+  "title": "Lolla '24",
+  "client": "McDonald's",
+  "agency": "Galeria.ag",
+  "year": "2024",
+  "role": "Creative concept, Design, Art direction",
+  "overview": "mcdonald's became the unofficial go-to meal of lollapalooza brasil. a nice, cheap way to replenish your energies between shows, and an almost mandatory stop in your festival line-up.",
+  "about": "in partnership with illustrator Jun Ioneda, we created a vibrant and surreal visual identity to represent our brand inside Lollapalooza Brasil 2024. (also, i got to interview one of the greatest artists in Brazil, no biggie.)",
+  "team": "Gabo Moraes, Gabriel Braz, Lais Delcelo, Chico Medeiros, Giulio Beloto, Cris Prado, Rodrigo Marangoni and Jun Ioneda",
+  "award": "Bronze, Illustration · Brazilian Creative Club 2024",
+  "colors": [
+   "#ff4fa3",
+   "#ffc72c",
+   "#3b2bd6"
+  ],
+  "images": [
+   "GVmG5ktu9eK6atOvTeBDB2yFv9s.png",
+   "dgoQtqGxuSvKYf7uzf17tkjQY8c.gif",
+   "2uxLpJZB9cmwLwVxSA33PHsiybM.gif",
+   "655jebIpqAeEeY4ijxpaEETYxyE.gif",
+   "6YXOZ6yBhGApMBFV5qNxFzNuo.gif",
+   "xKLwWaWpKDmp5wlwDFDmjfVM7E.png"
+  ],
+  "vimeo": []
+ },
+ {
+  "slug": "nonsense",
+  "rank": "10",
+  "suit": "♥",
+  "title": "Defying Logic",
+  "client": "McDonald's",
+  "agency": "Galeria.ag",
+  "year": "2023",
+  "role": "Creative concept, Design, Art direction",
+  "overview": "it's not always that getting one of those mind-bending briefs turns into a good thing, but this time it did. we got some of the greatest thinkers in history to try and figure out what is going on in this sandwich: spicy? sweet? crispy? in the end, it makes perfect sense.",
+  "about": "the McCrispy Chicken Elite was kind of a confusing sandwich. it was sweet, kinda spicy and crunchy. and we couldn't 100% say it was any of those. so, we created this story where scientists, philosophers and artists would try to figure it out. the veredict? it's delicious.",
+  "team": "Gabo Moraes, Luan Alves, Carlos Galazzi, Guzera Alves, Rodrigo Porto, Paladino+CZAR and Punch Audio",
+  "award": "In-Book, Film/Art Direction · Brazilian Creative Club 2024",
+  "colors": [
+   "#3a2a1a",
+   "#c9a24a",
+   "#da291c"
+  ],
+  "images": [
+   "DVn26RJCqlMOLxRbjNMEzIZnp8.gif",
+   "PA5L1Col1rmYNN182EYGzfxEGk.webp",
+   "13i9Sz1A0YM9G656bxFfwGho.webp",
+   "CHk6JI3rJ14rRZxgqrWC6MoM7c.webp",
+   "DkyAqnh7uglD76tNSgbxDjVMyj8.webp",
+   "zjXwR4ncujNpaCiJrTyfM5n1DT8.webp"
+  ],
+  "vimeo": [
+   "875727093"
+  ]
+ },
+ {
+  "slug": "mcmeltetel",
+  "rank": "9",
+  "suit": "♦",
+  "title": "The Rockstar Meal",
+  "client": "McDonald's",
+  "agency": "Galeria.ag",
+  "year": "2023",
+  "role": "Creative concept, Design, Art direction",
+  "overview": "for the first edition of The Town, a music festival that's set to be one of the biggest in Brazil, we created a sandwich so good that it should be a star: McMelt The Town.",
+  "about": "we created some cool merch for our new rockstar and even did a collab with Marrone (or should i say Post Marrone?) - a true brazillian star - and the crowd went wild!",
+  "team": "Gabo Moraes, Luan Alves, Gabriel Braz, Laís Delcelo, Guzera Alves, Rodrigo Porto and recôncavo",
+  "colors": [
+   "#111111",
+   "#da291c",
+   "#ffc72c"
+  ],
+  "images": [
+   "Zs64ltjSsXoOJQMvCrGOMS54nc.webp",
+   "AePb9E7yG8Stdh3pA37eHiL550Y.webp",
+   "OWBJKnFCtPLcZAlCVP7NNfxZOnE.webp",
+   "fCr6Plx3HHzHWtJ5EZOl6xAyH4.jpg",
+   "ogjO3HJF3MXrzB338TsnLbkMu0.jpg",
+   "0S96tY7h1GIapqpwgSrmLxJLTlA.jpg"
+  ],
+  "vimeo": [
+   "856519851",
+   "969178703"
+  ]
+ },
+ {
+  "slug": "dancagatinhodanca",
+  "rank": "8",
+  "suit": "♥",
+  "title": "Dial \"M\" for Love",
+  "client": "McDonald's",
+  "agency": "Galeria.ag",
+  "year": "2022",
+  "role": "Creative concept, Art direction",
+  "overview": "they say romance is dead. In brazilian Valentine's Day, we went looking for it way back in the 2000's, and didn't hold back: cheesy pick-up lines, outdated looks, \"Dial LOVE to 48022\", hunky TV hosts and, of course, lots of Méqui.",
+  "about": "we invited people to send their best pick-up lines and turned them into content for our WhatsApp channel in collaboration with Rodrigo Faro, one of Brazil's most romantic TV hosts. all while reliving the good old days of SMS dating advice.",
+  "team": "Gabo Moraes, Luan Alves, Matheus Franzoni, Guzera Alves and Rodrigo Porto",
+  "colors": [
+   "#ff6fb5",
+   "#da291c",
+   "#7ad7ff"
+  ],
+  "images": [
+   "F5foiUMoe1lwaE2xYhFTyDUZFU.webp",
+   "mRQizwPmtO0wPvZseFOcsZLSiI.webp",
+   "HmMAzRz0eM9Vf2n1vN59t88BY.webp",
+   "qR3GysjMefZeDeTry1kyGy1MHI.webp",
+   "ISyusT3mpFJQHaK7JiEtPu5c6c.webp",
+   "w0VV7NhLexVU1os2Sgz8Cfbdw.webp"
+  ],
+  "vimeo": [
+   "724544164"
+  ]
+ },
+ {
+  "slug": "inimigosdodetran",
+  "rank": "7",
+  "suit": "♦",
+  "title": "Drive-Thru Signs",
+  "client": "McDonald's",
+  "agency": "Galeria.ag",
+  "year": "2022",
+  "role": "Creative concept, Design, Art direction",
+  "overview": "strange things happen during Drive-Thru Week. everywhere you look, you see Méqui. all you can do is get in your car, go to the nearest Drive-Thru and hope you don't miss any deals.",
+  "about": "",
+  "team": "Gabo Moraes, Luan Alves, Guzera, Rodrigo Porto e Paladino+Santa Transmedia",
+  "colors": [
+   "#1d5c2e",
+   "#ffc72c",
+   "#f2f2f2"
+  ],
+  "images": [
+   "kaei0JczbsjqIH21sZIi2fR2mNg.gif",
+   "HccN5YHpHDW2duYsgnv732SNNY.gif",
+   "smahaTRfHSQvlf0CfD3aLxsSmI.gif"
+  ],
+  "vimeo": [
+   "1089919500"
+  ]
+ },
+ {
+  "slug": "powerup",
+  "rank": "6",
+  "suit": "♥",
+  "title": "Power-Ups",
+  "client": "McDonald's",
+  "agency": "Galeria.ag",
+  "year": "2021",
+  "role": "Creative concept, Design, Art direction",
+  "overview": "every gamer needs their power-ups. McDonald's wanted to show the world that, whenever you need some boost in your game, they'll be there.",
+  "about": "in 2021, we brought McDonald's closer to the gaming community with the \"Méqui, your Player 2\" campaign, which was released along with an ad loaded with references and easter eggs that showed the best power-up for your gaming session is a McDonald's meal.",
+  "team": "Gabo Moraes, Luan Alves, Guzera e Rodrigo Porto",
+  "colors": [
+   "#1a1446",
+   "#00e0ff",
+   "#ffc72c"
+  ],
+  "images": [
+   "Gu9TXMtIUxZLilxYitaTCAEhJH4.gif",
+   "ggT8y1EYa6qXnX2VgUV9O2gaPM.gif",
+   "hkHE8thpRm1AIRRLWJDHw4sqm6A.gif",
+   "PPZSHo906ojHxzovitCmzyD9NGE.gif",
+   "LHaatsc2h0mdqJggDaIg0Oij8U.gif"
+  ],
+  "vimeo": [
+   "1089917685"
+  ]
+ },
+ {
+  "slug": "nerdstuff",
+  "rank": "5",
+  "suit": "♠",
+  "title": "MTG Proxies",
+  "client": "Personal project",
+  "agency": "",
+  "year": "",
+  "role": "Card redesign",
+  "overview": "I've recently gotten into this game called Magic: The Gathering. For all you non-nerds out there, it's a trading card game, where you build your deck and spend a few hours arguing about rules with your friends.",
+  "about": "The thing about MTG that got me, though, was the art. The illustrations on the cards are amazing and there are a LOT of special editions with even cooler designs. So when i found out that people also ocasionally redesign some of their own cards, i had to try it myself. Using Midjourney and some other stuff, i recreated some cards to make them more my own.",
+  "team": "Gabo Moraes",
+  "colors": [
+   "#2b2233",
+   "#8f6bd8",
+   "#d9c48a"
+  ],
+  "images": [
+   "Oidz85Yzc8pDCzPNvIkIhNBWaA.png",
+   "f3PcWApJkIZHYQisEK10rmK2dPA.jpg",
+   "FO3Dt6IcT8ZI71Viam7KV8vAMWg.jpg",
+   "11hrSzEIfrRZ3Sz4qNAZVnB9wY.jpg",
+   "GMGi3SkNY7HiKZtm3qI2R6BB4Nw.jpg",
+   "wQeBCG3uyXaYjT7N6HrkxdcwJ4.jpg"
+  ],
+  "vimeo": []
+ }
+];
+
+const table = document.getElementById("table");
+const deck = document.getElementById("deck");
+const hint = document.getElementById("hint");
+const gatherBtn = document.getElementById("gather");
+const dropzone = document.getElementById("dropzone");
+const sheet = document.getElementById("sheet");
+const jobEl = document.getElementById("job");
+const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const isRed = s => s === "♥" || s === "♦";
+const FRAMER = "https://framerusercontent.com/images/";
+const img = (file, size = 1024) => `${FRAMER}${file}?scale-down-to=${size}`;
+// External media (Framer images, Vimeo players) loads on the real site but is blocked inside some previews.
+// The first card cover that loads switches the job sheets to show photos and films.
+let mediaOK = false;
+
+// Decorative stack under the deck
+for (let i = 0; i < 5; i++) {
+  const s = document.createElement("div");
+  s.className = "stack back-face";
+  s.style.transform = `translate(${-i * 1.5}px, ${-i * 1.5}px)`;
+  deck.prepend(s);
+}
+
+let state = "deck"; // deck | hand | playing
+const cards = JOBS.map((job, i) => {
+  const el = document.createElement("button");
+  el.className = "card";
+  el.setAttribute("aria-label", `${job.title}, ${job.client}. Play this card`);
+  el.tabIndex = -1;
+  const c = isRed(job.suit) ? "red" : "";
+  el.innerHTML = `
+    <div class="inner">
+      <div class="front">
+        <div class="corner ${c}">${job.rank}<span>${job.suit}</span></div>
+        <div class="pip">
+          ${job.images[0] ? `<img class="thumb" alt="" src="${img(job.images[0], 512)}">` : ""}
+          <div class="suit ${c}">${job.suit}</div>
+          <div class="title">${job.title}</div>
+          <div class="cat">${[job.client, job.year].filter(Boolean).join(" · ")}</div>
+        </div>
+        <div class="corner bottom ${c}">${job.rank}<span>${job.suit}</span></div>
+      </div>
+      <div class="back-face"></div>
+    </div>`;
+  el.hidden = true;
+  const t = el.querySelector(".thumb");
+  if (t) {
+    t.addEventListener("load", () => { mediaOK = true; el.classList.add("has-thumb"); });
+    t.addEventListener("error", () => t.remove());
+  }
+  table.appendChild(el);
+  return { el, job, i };
+});
+
+function metrics() {
+  const r = table.getBoundingClientRect();
+  const cw = cards[0].el.offsetWidth || 120, ch = cards[0].el.offsetHeight || 168;
+  return { w: r.width, h: r.height, cw, ch };
+}
+
+function handPose(i, n) {
+  const { w, h, cw, ch } = metrics();
+  const mid = (n - 1) / 2;
+  const t = i - mid;
+  const spread = Math.min(cw * 0.6, (w - 48 - cw) / Math.max(1, n - 1));
+  const x = t * spread;
+  // cards sit low, toward the viewer; the deck sits at 42% of the height
+  const baseY = h * 0.535 - ch * 0.78 - Math.max(0, n / 2 - 1) * 1.2;
+  const y = baseY + t * t * 2;
+  const rot = t * 3.4;
+  return { x, y, rot };
+}
+
+function setPose(card, x, y, rot, scale = 1) {
+  const tf = `translate(${x}px, ${y}px) rotate(${rot}deg) scale(${scale})`;
+  card.el.style.setProperty("--rest", tf);
+  card.el.style.transform = tf;
+}
+
+function layoutHand(animate = true) {
+  cards.forEach((c, i) => {
+    if (c === playing) return;
+    const p = handPose(i, cards.length);
+    c.pose = p;
+    if (!animate) c.el.style.transition = "none";
+    setPose(c, p.x, p.y, p.rot);
+    c.el.style.zIndex = 10 + i;
+    if (!animate) requestAnimationFrame(() => (c.el.style.transition = ""));
+  });
+}
+
+function deal() {
+  if (state !== "deck") return;
+  state = "dealing";
+  deck.classList.add("dealt");
+  deck.setAttribute("aria-hidden", "true");
+  deck.tabIndex = -1;
+  cards.forEach((c, i) => {
+    c.el.hidden = false;
+    c.el.classList.remove("up", "in-hand");
+    c.el.style.transition = "none";
+    setPose(c, 0, 0, 0);
+    c.el.style.zIndex = 30 - i;
+  });
+  void table.offsetWidth;
+  const step = reduced ? 0 : 140;
+  cards.forEach((c, i) => {
+    setTimeout(() => {
+      c.el.style.transition = "";
+      c.el.style.zIndex = 10 + i;
+      const p = handPose(i, cards.length);
+      c.pose = p;
+      setPose(c, p.x, p.y, p.rot);
+      setTimeout(() => c.el.classList.add("up"), reduced ? 0 : 260);
+    }, i * step);
+  });
+  setTimeout(() => {
+    cards.forEach(c => { c.el.classList.add("in-hand"); c.el.tabIndex = 0; });
+    state = "hand";
+    hint.classList.add("on");
+    gatherBtn.classList.add("on");
+    cards[0].el.focus({ preventScroll: true });
+  }, cards.length * step + 700);
+}
+
+function gather() {
+  if (state !== "hand") return;
+  state = "dealing";
+  hint.classList.remove("on");
+  gatherBtn.classList.remove("on");
+  cards.forEach((c, i) => {
+    c.el.classList.remove("up", "in-hand");
+    c.el.tabIndex = -1;
+    setTimeout(() => { c.el.style.zIndex = 10 + i; setPose(c, 0, 0, 0); }, reduced ? 0 : 250 + (cards.length - i) * 50);
+  });
+  setTimeout(() => {
+    cards.forEach(c => (c.el.hidden = true));
+    deck.classList.remove("dealt");
+    deck.removeAttribute("aria-hidden");
+    deck.tabIndex = 0;
+    deck.focus({ preventScroll: true });
+    state = "deck";
+  }, reduced ? 50 : 1100);
+}
+
+let playing = null;
+function play(card) {
+  if (state !== "hand") return;
+  state = "playing";
+  playing = card;
+  hint.classList.remove("on");
+  dropzone.classList.remove("on", "hot");
+  card.el.classList.remove("in-hand");
+  card.el.style.zIndex = 80;
+  setPose(card, 0, 0, 0, 1.25);
+  setTimeout(() => openSheet(card.job), reduced ? 0 : 650);
+}
+
+function poster(job, a, b, d) {
+  return `<div class="poster" style="--a:${a};--b:${b};--d:${d}">
+        <span class="poster-suit">${job.suit}</span>
+        <strong>${job.title}</strong>
+        <span class="poster-meta">${job.client}${job.agency ? " @ " + job.agency : ""}</span>
+      </div>`;
+}
+
+function media(job) {
+  const films = job.vimeo.map(v => `<div class="film"><iframe src="https://player.vimeo.com/video/${v}?dnt=1&title=0&byline=0&portrait=0" title="${job.title} film" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>`).join("");
+  const pics = job.images.slice(0, 6).map((f, i) => `<img class="${i === 0 && !job.vimeo.length ? "wide" : ""}" alt="${job.title}, image ${i + 1}" loading="lazy" src="${img(f)}">`).join("");
+  return `<div class="media">${films}<div class="pics">${pics}</div></div>`;
+}
+
+function openSheet(job) {
+  const c = isRed(job.suit) ? "red" : "";
+  const [a, b, d] = job.colors;
+  const meta = [job.client, job.agency, job.year].filter(Boolean);
+  const rows = [["Client", job.client], ["Agency", job.agency], ["Year", job.year], ["Role", job.role], ["Team", job.team], ["Award", job.award]]
+    .filter(r => r[1]).map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("");
+  jobEl.innerHTML = `
+    <header class="job-head">
+      <div class="job-rank ${c}">${job.rank}<span>${job.suit}</span></div>
+      <div>
+        <h2 id="job-title">${job.title}</h2>
+        <div class="job-meta">${meta.map(m => `<span>${m}</span>`).join("")}</div>
+      </div>
+      <button class="close" id="close">Back to the table</button>
+    </header>
+    <div class="job-body">
+      <div>
+        <p class="lead">${job.overview}</p>
+        ${job.about ? `<p>${job.about}</p>` : ""}
+        <dl>${rows}</dl>
+        <div class="links">
+          ${!mediaOK ? job.vimeo.map((v, i) => `<a class="full" href="https://vimeo.com/${v}" target="_blank" rel="noopener">Watch the film${job.vimeo.length > 1 ? " " + (i + 1) : ""} ↗</a>`).join("") : ""}
+          <a class="full" href="https://gabomoraes.work/work/${job.slug}" target="_blank" rel="noopener">See the full project ↗</a>
+        </div>
+      </div>
+      ${mediaOK ? media(job) : poster(job, a, b, d)}
+    </div>`;
+  jobEl.classList.toggle("with-media", mediaOK);
+  sheet.hidden = false;
+  requestAnimationFrame(() => sheet.classList.add("open"));
+  document.getElementById("close").addEventListener("click", closeSheet);
+  document.getElementById("close").focus({ preventScroll: true });
+}
+
+function closeSheet() {
+  if (state !== "playing") return;
+  sheet.classList.remove("open");
+  setTimeout(() => (sheet.hidden = true), reduced ? 0 : 350);
+  const card = playing;
+  playing = null;
+  const p = handPose(card.i, cards.length);
+  card.el.style.zIndex = 10 + card.i;
+  setPose(card, p.x, p.y, p.rot);
+  setTimeout(() => {
+    card.el.classList.add("in-hand");
+    state = "hand";
+    hint.classList.add("on");
+    card.el.focus({ preventScroll: true });
+  }, reduced ? 0 : 500);
+}
+
+sheet.addEventListener("click", e => { if (e.target === sheet) closeSheet(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeSheet(); });
+deck.addEventListener("click", deal);
+gatherBtn.addEventListener("click", gather);
+
+// Drag to play. A short press without movement counts as a tap and also plays.
+cards.forEach(card => {
+  let start = null;
+  card.el.addEventListener("pointerdown", e => {
+    if (state !== "hand") return;
+    start = { x: e.clientX, y: e.clientY, moved: false };
+    card.el.setPointerCapture(e.pointerId);
+  });
+  card.el.addEventListener("pointermove", e => {
+    if (!start) return;
+    const dx = e.clientX - start.x, dy = e.clientY - start.y;
+    if (!start.moved && Math.hypot(dx, dy) < 6) return;
+    if (!start.moved) { start.moved = true; card.el.classList.add("dragging"); dropzone.classList.add("on"); }
+    const p = card.pose;
+    setPose(card, p.x + dx, p.y + dy, p.rot * Math.max(0, 1 + dy / 200));
+    dropzone.classList.toggle("hot", dy < -metrics().ch * 0.7);
+  });
+  const end = e => {
+    if (!start) return;
+    const dy = e.clientY - start.y, moved = start.moved;
+    start = null;
+    card.el.classList.remove("dragging");
+    dropzone.classList.remove("on", "hot");
+    if (!moved || dy < -metrics().ch * 0.7) play(card);
+    else setPose(card, card.pose.x, card.pose.y, card.pose.rot);
+  };
+  card.el.addEventListener("pointerup", end);
+  card.el.addEventListener("pointercancel", () => { if (!start) return; start.moved = true; end({ clientY: Infinity }); });
+  card.el.addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); play(card); }
+    if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+      const n = cards[(card.i + (e.key === "ArrowRight" ? 1 : cards.length - 1)) % cards.length];
+      n.el.focus({ preventScroll: true });
+    }
+  });
+});
+
+addEventListener("resize", () => { if (state === "hand" || state === "playing") layoutHand(false); });
+</script>
+
+</body>
+</html>
